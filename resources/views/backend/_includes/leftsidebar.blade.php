@@ -17,12 +17,11 @@
                 </div>
             </li>
             <li class="active open"><a href="#"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
-            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>App</span></a>
+            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>Product Section</span></a>
                 <ul class="ml-menu">
-                    <li><a href="#">Email</a></li>
-                    <li><a href="#">Chat Apps</a></li>
-                    <li><a href="#">Calendar</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Brand</a></li>
+                    <li><a href="#">Category</a></li>
+                    <li><a href="#">Product</a></li>
                 </ul>
             </li>
             <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-assignment"></i><span>Projects</span></a>

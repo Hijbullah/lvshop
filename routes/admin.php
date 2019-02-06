@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/test', function () {
+Route::get('/blank', function () {
     return view('backend.pages.blank');
 });
 
@@ -27,6 +27,7 @@ Route::namespace('Backend\Auth')->group(function () {
 Route::namespace('Backend')->group(function () {
     Route::get('/', 'AdminController@showDashboard')->name('admin.dashboard');
     Route::resource('/admins', 'AdminController');
+    Route::resource('/brands', 'BrandController');
 });
 
 
