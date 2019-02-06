@@ -16,10 +16,10 @@
                     </div>
                 </div>
             </li>
-            <li class="active open"><a href="#"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+            <li class="active open"><a href=" {{ route('admin.dashboard') }} "><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>Product Section</span></a>
                 <ul class="ml-menu">
-                    <li><a href="#">Brand</a></li>
+                    <li><a href=" {{ route('brands.index') }} ">Brand</a></li>
                     <li><a href="#">Category</a></li>
                     <li><a href="#">Product</a></li>
                 </ul>
