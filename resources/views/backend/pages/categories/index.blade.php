@@ -97,6 +97,16 @@
 @endsection
 
 @push('page-css')
+    <style>
+        * ul {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+        }
+        ul li ul li {
+            padding-left: 25px;
+        }
+    </style>
 
 @endpush
 

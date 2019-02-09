@@ -31,6 +31,8 @@ Route::namespace('Backend')->group(function () {
         'create', 'edit'
     ]);
     Route::resource('products', 'ProductController');
+    Route::get('showing', 'ProductController@showing');
+
 });
 
 
