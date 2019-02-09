@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Backend\Category;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,18 +15,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+    
+        
+                        $categories = Category::get()->toTree();
+        return view('backend.pages.categories.index', compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -36,7 +30,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255', 'unique:categories'],
+            'slug' => ['required', 'string', 'max:100', 'unique:categories']
+        ]);
+        
+        $parent = $request->parent_id != 0 ? $request->parent_id : null;
+        $node = $request->except(['parent_id']);
+        if ($parent) {
+            $parent = Category::findOrFail($parent);
+            $category = Category::create($node, $parent);
+        }else{
+            $category = Category::create($node);
+        }
+
+        $categories = Category::get()->toTree();
+        return view('backend.pages.categories.index', compact('categories'))->with('Category has created');
     }
 
     /**
@@ -83,4 +92,5 @@ class CategoryController extends Controller
     {
         //
     }
+
 }

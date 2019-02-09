@@ -162,7 +162,7 @@ $.AdminAero = {}, $.AdminAero.options = {
     }
 }, $.AdminAero.select = {
     activate: function() {
-        $.fn.selectpicker && $("select:not(.ms)").selectpicker()
+        //$.fn.selectpicker && $("select:not(.ms)").selectpicker()
     }
 };
 var edge = "Microsoft Edge",
@@ -298,7 +298,7 @@ $.AdminAero.browser = {
         a.preventDefault(), $("#search").addClass("open"), $('#search > form > input[type="search"]').focus()
     }), $("#search, #search #close").on("click keyup", function(a) {
         a.target != this && "close" != a.target.id && 27 != a.keyCode || $(this).removeClass("open")
-    }), $("form").submit(function(a) {
+    }), $("#main-search").submit(function(a) {
         return a.preventDefault(), !1
     })
 }), $(function() {
@@ -307,10 +307,3 @@ $.AdminAero.browser = {
         $(this).attr("href", a)
     }))
 });
-var Tawk_API = Tawk_API || {},
-    Tawk_LoadStart = new Date;
-! function() {
-    var a = document.createElement("script"),
-        b = document.getElementsByTagName("script")[0];
-    a.async = !0, a.src = "https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default", a.charset = "UTF-8", a.setAttribute("crossorigin", "*"), b.parentNode.insertBefore(a, b)
-}();

@@ -11,8 +11,8 @@
     <!-- Favicon-->
     <link rel="icon" href="{{ asset('backend/favicon.ico') }}" type="image/x-icon">
     <!-- Custom Css -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend//css/style.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/plugins/bootstrap/css/bootstrap.min.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('backend/css/style.min.css') }}">
 </head>
 
 <body class="theme-blush">

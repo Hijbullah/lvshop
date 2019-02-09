@@ -28,7 +28,10 @@ Route::namespace('Backend')->group(function () {
     Route::get('/', 'AdminController@showDashboard')->name('admin.dashboard');
     Route::resource('admins', 'AdminController');
     Route::resource('brands', 'BrandController');
-    Route::resource('categories', 'CategoryController');
+    Route::get('/categories/all', 'CategoryController@loadCategories');
+    Route::resource('categories', 'CategoryController')->except([
+        'create', 'edit'
+    ]);
     Route::resource('products', 'ProductController');
 });
 
