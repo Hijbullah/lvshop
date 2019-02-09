@@ -94,4 +94,9 @@ class ProductController extends Controller
     {
         //
     }
+
+
+    public function showing() {
+        return view('backend.pages.products.show');
+    }
 }

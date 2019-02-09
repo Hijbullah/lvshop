@@ -177,6 +177,14 @@
         border-radius: 5px;
         padding: 5px 0px;
     }
+    * ul {
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+    }
+    ul li ul li {
+        padding-left: 25px;
+    }
 </style>
 <link rel="stylesheet" href="{{ asset('backend/plugins/summernote/dist/summernote.css') }}">
 <link rel="stylesheet" href="{{ asset('backend/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}">
