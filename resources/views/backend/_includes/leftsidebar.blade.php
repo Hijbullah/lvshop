@@ -17,7 +17,9 @@
                 </div>
             </li>
             <li class="active open"><a href=" {{ route('admin.dashboard') }} "><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
-            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>Product Section</span></a>
+            <li><a href=" {{ route('categories.index') }} "><i class="zmdi zmdi-apps"></i><span>Categories</span></a></li>
+            <li><a href=" {{ route('products.index') }} "><i class="zmdi zmdi-shopping-cart"></i><span>Products</span></a></li>
+            {{-- <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>Product Section</span></a>
                 <ul class="ml-menu">
                     <li><a href=" {{ route('categories.index') }} ">Categories</a></li>
                     <li><a href="{{ route('products.index') }}">Products</a></li>
@@ -55,14 +57,14 @@
                     <li><a href="#">Locked Screen</a></li>
                 </ul>
             </li>
-
+            --}}
             <li class="open_top"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-lock"></i><span>Administrator</span></a>
                 <ul class="ml-menu">
                     <li><a href="#">Admins Section</a></li>
                     <li><a href="#">Roles Section</a></li>
                     <li><a href="#">Permissions section</a></li>
                 </ul>
-            </li>
+            </li> 
         </ul>
     </div>
 </aside>

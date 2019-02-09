@@ -18,4 +18,12 @@ class Category extends Model
     protected $fillable = [
         'name', 'slug', 'description', 'cover_img', 'status', 'parent_id'
     ];
+
+    /**
+     * Get the products for the category.
+     */
+    public function products()
+    {
+        return $this->hasMany('App\Models\Product');
+    }
 }

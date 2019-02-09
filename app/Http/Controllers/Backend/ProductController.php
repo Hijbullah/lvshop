@@ -50,38 +50,32 @@ class ProductController extends Controller
         // ]);
 
         if($request->hasFile('images')) {
-            $pathArray = [];
-            foreach($request->images as $image){
-                $path = $request->cover_image->store('Products');
-                $path = Storage::url($path);
-                $pathArray[] = $path;
-            }
-
-            return $pathArray;
-            
+           $pathString = $this->storingMultipleImages($request->images); 
         }
         
-        // if($request->hasFile('cover_img')) {
-        //     $path = $request->cover_image->store('Products');
-        //     $path = Storage::url($path);
-        // }
+        if($request->hasFile('cover_img')) {
+            $path = $request->cover_img->store('Products');
+            $path = Storage::url($path);
+        }
 
         $product = new Product;
+        $product->product_code = str_random(15);;
         $product->name = $request->name;
         $product->slug = $request->slug;
-        //$product->cover_img = $path;
+        $product->cover_img = $path;
         $product->short_description = $request->short_description;
         $product->description = $request->description;
-        //$product->images = $request->images;
-        $product->quantity = $request->quaunit_pricentity;
+        $product->images = $request->hasFile('images') ? $pathString : null;
+        $product->quantity = $request->quantity;
         $product->unit_price = $request->unit_price;
         $product->sale_price = $request->sale_price;
         $product->discount_price = $request->discount_price;
         $product->status = $request->status;
 
+        $category = Category::find($request->category_id);
+        $category->products()->save($product);
         
-
-        return $product;
+        return redirect()->route('products.index')->with('product has successfully saved');
     }
 
     /**
@@ -132,5 +126,22 @@ class ProductController extends Controller
 
     public function showing() {
         return view('backend.pages.products.show');
+    }
+
+    /**
+     * Stroring Multiple Images to the local Storage.
+     *
+     * @param $images
+     * @return $paths in string
+     */
+    public function storingMultipleImages($images)
+    {
+        $pathArray = [];
+        foreach($images as $image){
+            $path = $image->store('Products');
+            $path = Storage::url($path);
+            $pathArray[] = $path;
+        }
+        return implode(',', $pathArray);
     }
 }
