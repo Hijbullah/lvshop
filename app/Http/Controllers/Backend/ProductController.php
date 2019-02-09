@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -26,7 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::get()->toTree();
+        return view('backend.pages.products.create', compact('categories'));
     }
 
     /**
@@ -37,7 +39,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'slug' => ['required', 'string', 'max:100', 'unique:products'],
+            'short_description' => ['required', 'string', 'min:100'],
+            'cover_img' => ['required', 'mimes:jpg,jpeg,png', ],
+            'slug' => ['required', 'string', 'max:100'],
+            'slug' => ['required', 'string', 'max:100'],
+        ]);
+        return $request;
     }
 
     /**

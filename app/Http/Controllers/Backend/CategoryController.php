@@ -15,9 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-    
-        
-                        $categories = Category::get()->toTree();
+        $categories = Category::get()->toTree();
         return view('backend.pages.categories.index', compact('categories'));
     }
 

@@ -20,11 +20,11 @@
                                     <div class="col-sm-12">
                                         
                                         <div class="form-group">  
-                                            <label class="label" for="category_name">Name <small class="text-danger">(Must Provide)</small></label> 
+                                            <label class="label" for="category_name">Name <small class="text-muted">(Must Provide)</small></label> 
                                             <input type="text" id="category_name" class="form-control" placeholder="Category Name" name="name">
                                         </div>
                                         <div class="form-group">  
-                                            <label class="label" for="category_slug">Slug <small class="text-danger">(Auto Generatd Or You can Provide your own)</small></label>
+                                            <label class="label" for="category_slug">Slug <small class="text-muted">(Auto Generatd Or You can Provide your own)</small></label>
                                             <input type="text" id="category_slug" class="form-control" placeholder="Slug" name="slug">
                                         </div>
                                         <div class="form-group">
@@ -68,17 +68,20 @@
                                             </div>
                                         </div>
                                         @foreach ($categories as $category)
-                                            <div class="category">
-                                                <div class="radio">
-                                                    <input type="radio" name="parent_id" id="{{ $category->id }}" value="{{ $category->id }}">
-                                                    <label for="{{ $category->id }}"> {{ $category->name }} </label>
-                                                </div>
-                                                @if (count($category->children) > 0)
-                                                    @foreach($category->children as $category)
-                                                        @include('backend.pages.categories.child', $category)
-                                                    @endforeach
-                                                @endif
-                                            </div>
+                                            <ul class="category">
+                                                <li>
+                                                    <div class="radio">
+                                                        <input type="radio" name="parent_id" id="{{ $category->id }}" value="{{ $category->id }}">
+                                                        <label for="{{ $category->id }}"> {{ $category->name }} </label>
+                                                    </div>
+                                                    @if (count($category->children) > 0)
+                                                        @foreach($category->children as $category)
+                                                            @include('backend.pages.categories.child', $category)
+                                                        @endforeach
+                                                    @endif
+                                                </li>
+                                               
+                                            </ul>
                                         
                                         @endforeach
                     
