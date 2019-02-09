@@ -6,7 +6,7 @@
     <section class="content">
         <div class="body_scroll">
             <div class="container-fluid">
-                <form action="{{ route('products.store') }}" method="post">
+                <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row clearfix">
                         <div class="col-sm-12 col-md-7 col-lg-7">
@@ -39,7 +39,7 @@
                                     </div>  
                                     <div class="form-group">
                                         <label class="label" for="product_images">Other's Images <small class="text-primary">(Optional | You can upload Multiple Imagaes)</small></label> 
-                                        <input type="file" class="form-control" name="images" id="product_images">
+                                        <input type="file" class="form-control" name="images[]" id="product_images" multiple>
                                     </div>   
                                     <div class="checkbox">
                                         <input id="status" name="status" value="1" type="checkbox" checked>
@@ -123,8 +123,8 @@
                                         </div>
                                         <div class="body">
                                             <div class="form-group">
-                                                <label class="label" for="category_cover">Cover Image <small class="text-primary">(Optional)</small></label> 
-                                                <input type="file" class="form-control" name="cover_img" id="category_cover">
+                                                <label class="label" for="product_cover">Cover Image <small class="text-muted">(Must Provide)</small></label> 
+                                                <input type="file" class="form-control" name="cover_img" id="product_cover">
                                             </div>
                                         </div>
                                     </div>
