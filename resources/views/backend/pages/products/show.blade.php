@@ -13,7 +13,7 @@
                             <div class="row">
                                 <div class="col-xl-3 col-lg-4 col-md-12">
                                     <div class="preview preview-pic tab-content">
-                                        <div class="tab-pane active" id="product_1"><img src="{{ asset('backend/images/ecommerce/1.png')}}" class="img-fluid" alt="" /></div>
+                                        <div class="tab-pane active" id="product_1"><img src="{{ asset($product->cover_img) }}" class="img-fluid" alt="" /></div>
                                         <div class="tab-pane" id="product_2"><img src="{{asset('backend/images/ecommerce/2.png')}}" class="img-fluid" alt=""/></div>
                                         <div class="tab-pane" id="product_3"><img src="{{asset('backend/images/ecommerce/3.png')}}" class="img-fluid" alt=""/></div>
                                         <div class="tab-pane" id="product_4"><img src="{{asset('backend/images/ecommerce/4.png')}}" class="img-fluid" alt=""/></div>
@@ -27,11 +27,11 @@
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-12">
                                     <div class="product details">
-                                        <h3 class="product-title mb-0">Simple Black Clock</h3>
-                                        <h5 class="price mt-0">Current Price: <span class="col-amber">$180</span></h5>
-                                        <h6 class="price mt-0">Purchase Price: <span class="text-danger"><del>$280</del></span></h6>
+                                        <h3 class="product-title mb-0">{{ $product->name }}</h3>
+                                        <h5 class="price mt-0">New Price: <span class="col-amber"> {{ $product->unit_price ? '$ ' . $product->unit_price : 'Not Set' }}</span></h5>
+                                        <h6 class="price mt-0">Old Price: <span class="text-danger"><del>{{ $product->sale_price ? '$ ' . $product->sale_price : 'Not Set' }}</del></span></h6>
                                         <hr>
-                                        <p class="product-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                        <p class="product-description"> {{ $product->short_description }} </p>
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#description">Description</a></li>
                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#review">Review</a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#about">About</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#about">New</a></li>
                             </ul>
                         </div>
                     </div>
@@ -52,8 +52,7 @@
                         <div class="body">                            
                             <div class="tab-content">
                                 <div class="tab-pane active" id="description">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                    {!! $product->description ? $product->description : 'NOT SET, PLS UPDATE' !!}
                                 </div>
                                 <div class="tab-pane" id="review">
                                     

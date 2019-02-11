@@ -9,16 +9,12 @@
                 <div class="row clearfix">
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="card">
+                            @include('includes.alert')
                             <div class="header">
-                                <h2><strong>All</strong> Products</h2>
-                                <ul class="header-dropdown">
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);" > <i class="zmdi zmdi-plus"></i> </a>
-                                    </li>
-                                    <li class="remove">
-                                        <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-                                    </li>
-                                </ul>
+                                <h2 class="float-left"><strong>All</strong> Products</h2>
+                                <div class="header-right float-right">
+                                    <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">Add New</a>
+                                </div>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-hover c_table">
@@ -35,15 +31,19 @@
                                             <td>{{ $loop->index + 1 }}</td>
                                             <td>{{ $product->name }}</td>
                                             <td>
-                                                <a href="javascript:void(0);" class="btn btn-info btn-sm waves-effect"><i class="zmdi zmdi-eye"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-success waves-effect waves-float btn-sm waves-light"><i class="zmdi zmdi-edit"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-danger waves-effect waves-float btn-sm waves-light"><i class="zmdi zmdi-delete"></i></a>
+                                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm waves-effect"><i class="zmdi zmdi-eye"></i></a>
+                                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-success waves-effect waves-float btn-sm waves-light"><i class="zmdi zmdi-edit"></i></a>
+                                                <a href="{{ route('products.destroy', $product->id) }}" class="btn btn-danger waves-effect waves-float btn-sm waves-light data-delete"><i class="zmdi zmdi-delete"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
                             </div>
+
+                            <form id="delete-form" action="" method="post" style="display:none">
+                                @method('DELETE')
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -60,5 +60,5 @@
 
 
 @push('page-scripts')
-
+    
 @endpush

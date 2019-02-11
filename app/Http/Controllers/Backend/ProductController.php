@@ -40,14 +40,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'name' => ['required', 'string', 'max:255'],
-        //     'slug' => ['required', 'string', 'max:100', 'unique:products'],
-        //     'short_description' => ['required', 'string', 'min:100'],
-        //     'cover_img' => ['required', 'mimes:jpg,jpeg,png', ],
-        //     'slug' => ['required', 'string', 'max:100'],
-        //     'slug' => ['required', 'string', 'max:100'],
-        // ]);
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'slug' => ['required', 'string', 'max:100', 'unique:products'],
+            'short_description' => ['required', 'string', 'min:100'],
+            'cover_img' => ['image','required', 'mimes:jpg,jpeg,png' ],
+            'images.*' => ['image', 'mimes:jpg,jpeg,png'],
+            'quantity' => ['nullable', 'numeric', 'min:0'],
+            'unit_price' => ['nullable', 'numeric', 'min:0'],
+            'sale_price' => ['nullable', 'numeric', 'min:0'],
+            //'sale_price' => ['nullable', 'numeric', 'min:0'],
+        ]);
 
         if($request->hasFile('images')) {
            $pathString = $this->storingMultipleImages($request->images); 
@@ -69,7 +72,7 @@ class ProductController extends Controller
         $product->quantity = $request->quantity;
         $product->unit_price = $request->unit_price;
         $product->sale_price = $request->sale_price;
-        $product->discount_price = $request->discount_price;
+        //$product->discount_price = $request->discount_price;
         $product->status = $request->status;
 
         $category = Category::find($request->category_id);
@@ -86,7 +89,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('backend.pages.products.show', compact('product'));
     }
 
     /**
@@ -97,7 +100,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::get()->toTree();
+        return view('backend.pages.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -109,7 +113,51 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'slug' => ['required', 'string', 'max:100'],
+            'short_description' => ['required', 'string', 'min:100'],
+            'cover_img' => ['image', 'mimes:jpg,jpeg,png' ],
+            'images.*' => ['image', 'mimes:jpg,jpeg,png'],
+            'quantity' => ['nullable', 'numeric', 'min:0'],
+            'unit_price' => ['nullable', 'numeric', 'min:0'],
+            'sale_price' => ['nullable', 'numeric', 'min:0'],
+            //'sale_price' => ['nullable', 'numeric', 'min:0'],
+        ]);
+
+        if($request->hasFile('images')) {
+           $pathString = $this->storingMultipleImages($request->images); 
+        }
+        
+        if($request->hasFile('cover_img')) {
+            $path = $request->cover_img->store('Products');
+            $path = Storage::url($path);
+        }
+
+        //$product->product_code = str_random(15);;
+        $product->name = $request->name;
+        $product->slug = $request->slug;
+        if($request->hasFile('cover_img')) {
+            $product->cover_img = $path;
+        }
+        $product->short_description = $request->short_description;
+        $product->description = $request->description;
+        if($request->hasFile('images')) {
+            $product->images = $pathString;
+        }
+        
+        $product->quantity = $request->quantity;
+        $product->unit_price = $request->unit_price;
+        $product->sale_price = $request->sale_price;
+        //$product->discount_price = $request->discount_price;
+        $product->status = $request->status ? 1 : 0;
+
+       
+
+        $category = Category::find($request->category_id);
+        $category->products()->save($product);
+        
+        return redirect()->route('products.index')->with('status', 'product has successfully Updated');
     }
 
     /**
@@ -120,12 +168,15 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Product::destroy($product);
+        return redirect()->route('products.index')->with('status', 'Product has been deleted successfully');
+
     }
 
 
     public function showing() {
         return view('backend.pages.products.show');
+        
     }
 
     /**

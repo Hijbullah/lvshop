@@ -16,9 +16,9 @@
                     </div>
                 </div>
             </li>
-            <li class="active open"><a href=" {{ route('admin.dashboard') }} "><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
-            <li><a href=" {{ route('categories.index') }} "><i class="zmdi zmdi-apps"></i><span>Categories</span></a></li>
-            <li><a href=" {{ route('products.index') }} "><i class="zmdi zmdi-shopping-cart"></i><span>Products</span></a></li>
+            <li class="{{ request()->is('admin') ? 'active' : '' }}"><a href=" {{ route('admin.dashboard') }} "><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+            <li class="{{ request()->is('admin/categories*') ? 'active' : '' }}"><a href=" {{ route('categories.index') }} "><i class="zmdi zmdi-apps"></i><span>Categories</span></a></li>
+            <li class="{{ request()->is('admin/products*') ? 'active' : '' }}""><a href=" {{ route('products.index') }} "><i class="zmdi zmdi-shopping-cart"></i><span>Products</span></a></li>
             {{-- <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>Product Section</span></a>
                 <ul class="ml-menu">
                     <li><a href=" {{ route('categories.index') }} ">Categories</a></li>
