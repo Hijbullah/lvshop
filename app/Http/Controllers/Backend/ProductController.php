@@ -57,7 +57,7 @@ class ProductController extends Controller
         }
         
         if($request->hasFile('cover_img')) {
-            $path = $request->cover_img->store('Products');
+            $path = $request->cover_img->store('public/Products');
             $path = Storage::url($path);
         }
 
@@ -78,7 +78,7 @@ class ProductController extends Controller
         $category = Category::find($request->category_id);
         $category->products()->save($product);
         
-        return redirect()->route('products.index')->with('product has successfully saved');
+        return redirect()->route('products.index')->with('status', 'product has successfully saved');
     }
 
     /**
@@ -130,7 +130,7 @@ class ProductController extends Controller
         }
         
         if($request->hasFile('cover_img')) {
-            $path = $request->cover_img->store('Products');
+            $path = $request->cover_img->store('public/Products');
             $path = Storage::url($path);
         }
 
@@ -168,7 +168,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        Product::destroy($product);
+        Product::destroy($product->id);
         return redirect()->route('products.index')->with('status', 'Product has been deleted successfully');
 
     }
@@ -189,7 +189,7 @@ class ProductController extends Controller
     {
         $pathArray = [];
         foreach($images as $image){
-            $path = $image->store('Products');
+            $path = $image->store('public/Products');
             $path = Storage::url($path);
             $pathArray[] = $path;
         }

@@ -9,6 +9,10 @@
             <div class="row clearfix">
                 <div class="col-lg-12">
                     <div class="card">
+                        <div class="header">
+                            <a href="{{ route('products.index') }}" class="btn btn-sm btn-success"> Go Back</a>
+                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-info"> Edit this Product </a>
+                        </div>
                         <div class="body">
                             <div class="row">
                                 <div class="col-xl-3 col-lg-4 col-md-12">

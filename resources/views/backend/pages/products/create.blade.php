@@ -11,9 +11,9 @@
                     <div class="row clearfix">
                         <div class="col-sm-12 col-md-7 col-lg-7">
                             <div class="card">
-                                <div class="header">
-                                    <h2><strong>Add </strong> Products</h2>
-                                    
+                                <div class="header clearfix">
+                                    <h2 class="float-left"><strong>Add </strong> Products</h2>
+                                    <a href="{{ route('products.index') }}" class="btn btn-sm btn-success float-right">Back to All Products</a>
                                 </div>
                                 <div class="body">
                                     <div class="form-group">  

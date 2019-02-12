@@ -41,7 +41,8 @@
                                 </table>
                             </div>
 
-                            <form id="delete-form" action="" method="post" style="display:none">
+                            <form id="delete-form"  method="post" style="display:none">
+                                @csrf
                                 @method('DELETE')
                             </form>
                         </div>
@@ -60,5 +61,17 @@
 
 
 @push('page-scripts')
-    
+    <script>
+            var products = document.querySelectorAll('.data-delete');
+            var deleteForm = document.getElementById('delete-form');
+            for(var product of Array.from(products)) {
+                product.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var action = this.href;
+                    deleteForm.action = action;
+                    deleteForm.submit();
+                });
+
+            }
+    </script>
 @endpush

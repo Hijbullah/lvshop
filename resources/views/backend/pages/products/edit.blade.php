@@ -12,10 +12,10 @@
                     <div class="row clearfix">
                         <div class="col-sm-12 col-md-7 col-lg-7">
                             <div class="card">
-                                <div class="header">
-                                    <h2><strong>Edit </strong> Product</h2>
-                                    
-                                </div>
+                                    <div class="header clearfix">
+                                        <h2 class="float-left"><strong>Edit </strong> Product</h2>
+                                        <a href="{{ route('products.index') }}" class="btn btn-sm btn-success float-right">Back to All Products</a>
+                                    </div>
                                 <div class="body">
                                     <div class="form-group">  
                                         <label class="label" for="product_name">Product Name <small class="text-muted">(Must Provide)</small></label> 
