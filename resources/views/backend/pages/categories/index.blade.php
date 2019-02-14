@@ -7,11 +7,14 @@
 <section class="content" id="categories">
     <div class="body_scroll">
         <div class="container-fluid">
+            @include('includes.alert')
             <form action="{{ route('categories.store') }}" method="post">
                 @csrf
                 <div class="row clearfix">
+                   
                     <div class="col-lg-5 col-md-5 col-sm-12">
                         <div class="card">
+                            
                             <div class="header">
                                 <h2><strong>Add New</strong> Category</h2>
                             </div>
@@ -70,9 +73,11 @@
                                         @foreach ($categories as $category)
                                             <ul class="category">
                                                 <li>
-                                                    <div class="radio">
+                                                    <div class="radio cat-radio-item">
                                                         <input type="radio" name="parent_id" id="{{ $category->id }}" value="{{ $category->id }}">
                                                         <label for="{{ $category->id }}"> {{ $category->name }} </label>
+                                                        <a href="{{ route('categories.destroy', $category->id) }}" class="btn btn-round btn-danger waves-effect waves-float btn-sm waves-light cat-data-delete"><i class="zmdi zmdi-delete"></i></a>
+
                                                     </div>
                                                     @if (count($category->children) > 0)
                                                         @foreach($category->children as $category)
@@ -86,12 +91,17 @@
                                         @endforeach
                     
                                 </div>
+                               
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
+        <form id="cat-delete-form"  method="post" style="display:none">
+            @csrf
+            @method('DELETE')
+        </form>
     </div>
 </section>
 @endsection
@@ -106,6 +116,14 @@
         ul li ul li {
             padding-left: 25px;
         }
+        .cat-data-delete {
+            display: none !important;
+        }
+        .cat-radio-item:hover .cat-data-delete  {
+            display: inline-block !important;
+            padding: 4px;
+            margin: 0 0 0px 10px;
+        }
     </style>
 
 @endpush
@@ -114,6 +132,21 @@
 
 @push('page-scripts')
     <script>
+
+        (function(){
+            var products = document.querySelectorAll('.cat-data-delete');
+            var deleteForm = document.getElementById('cat-delete-form');
+            for(var product of Array.from(products)) {
+                product.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var action = this.href;
+                    deleteForm.action = action;
+                    deleteForm.submit();
+                });
+
+            }
+        })();
+
         $('#category_name').keyup(function () {
            
             var str = $(this).val();

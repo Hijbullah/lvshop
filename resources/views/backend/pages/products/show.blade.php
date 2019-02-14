@@ -17,23 +17,30 @@
                             <div class="row">
                                 <div class="col-xl-3 col-lg-4 col-md-12">
                                     <div class="preview preview-pic tab-content">
-                                        <div class="tab-pane active" id="product_1"><img src="{{ asset($product->cover_img) }}" class="img-fluid" alt="" /></div>
-                                        <div class="tab-pane" id="product_2"><img src="{{asset('backend/images/ecommerce/2.png')}}" class="img-fluid" alt=""/></div>
-                                        <div class="tab-pane" id="product_3"><img src="{{asset('backend/images/ecommerce/3.png')}}" class="img-fluid" alt=""/></div>
-                                        <div class="tab-pane" id="product_4"><img src="{{asset('backend/images/ecommerce/4.png')}}" class="img-fluid" alt=""/></div>
+                                        <div class="tab-pane active" id="product_0"><img src="{{ asset($product->cover_img) }}" class="img-fluid" alt="" /></div>
+                                        @foreach ($images as $image)
+                                        <div class="tab-pane" id="product_{{ $loop->index + 1 }}"><img src="{{asset($image)}}" class="img-fluid" alt=""/></div>
+                                        @endforeach
+                                        
+                                        {{-- <div class="tab-pane" id="product_3"><img src="{{asset('backend/images/ecommerce/3.png')}}" class="img-fluid" alt=""/></div>
+                                        <div class="tab-pane" id="product_4"><img src="{{asset('backend/images/ecommerce/4.png')}}" class="img-fluid" alt=""/></div> --}}
                                     </div>
                                     <ul class="preview thumbnail nav nav-tabs">
-                                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#product_1"><img src="{{asset('backend/images/ecommerce/1.png')}}" alt=""/></a></li>
-                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#product_2"><img src="{{asset('backend/images/ecommerce/2.png')}}" alt=""/></a></li>
-                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#product_3"><img src="{{asset('backend/images/ecommerce/3.png')}}" alt=""/></a></li>
-                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#product_4"><img src="{{asset('backend/images/ecommerce/4.png')}}" alt=""/></a></li>                                    
+                                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#product_0"><img src="{{ asset($product->cover_img) }}" alt="Image 1"/></a></li>
+                                        @foreach ($images as $image)
+                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#product_{{ $loop->index + 1 }}"><img src="{{asset($image)}}" alt=""/></a></li>
+                                        
+                                        @endforeach
+                                       
+                                        {{-- <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#product_3"><img src="{{asset('backend/images/ecommerce/3.png')}}" alt=""/></a></li>
+                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#product_4"><img src="{{asset('backend/images/ecommerce/4.png')}}" alt=""/></a></li>                                     --}}
                                     </ul>                
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-12">
                                     <div class="product details">
                                         <h3 class="product-title mb-0">{{ $product->name }}</h3>
-                                        <h5 class="price mt-0">New Price: <span class="col-amber"> {{ $product->unit_price ? '$ ' . $product->unit_price : 'Not Set' }}</span></h5>
-                                        <h6 class="price mt-0">Old Price: <span class="text-danger"><del>{{ $product->sale_price ? '$ ' . $product->sale_price : 'Not Set' }}</del></span></h6>
+                                        <h5 class="price mt-0">New Price: <span class="col-amber"> {{ $product->sale_price ? '$ ' . $product->sale_price : 'Not Set' }}</span></h5>
+                                        <h6 class="price mt-0">Old Price: <span class="text-danger"><del>{{ $product->unit_price ? '$ ' . $product->unit_price : 'Not Set' }}</del></span></h6>
                                         <hr>
                                         <p class="product-description"> {{ $product->short_description }} </p>
                                     </div>

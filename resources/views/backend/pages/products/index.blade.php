@@ -22,6 +22,10 @@
                                     <tr>
                                         <th style="width:60px;">Sl.</th>
                                         <th>Name</th>
+                                        <th>New Price</th>
+                                        <th>Old Price</th>
+                                        <th>Quantity</th>
+                                        <th>Category</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -29,7 +33,11 @@
                                     @foreach($products as $product)
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
-                                            <td>{{ $product->name }}</td>
+                                            <td>{{ str_limit($product->name, 15, '...') }}</td>
+                                            <td>$ {{ $product->sale_price }}</td>
+                                            <td>$ {{ $product->unit_price }}</td>
+                                            <td>{{ $product->quantity }}</td>
+                                            <td>{{ $product->category->name }}</td>
                                             <td>
                                                 <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm waves-effect"><i class="zmdi zmdi-eye"></i></a>
                                                 <a href="{{ route('products.edit', $product->id) }}" class="btn btn-success waves-effect waves-float btn-sm waves-light"><i class="zmdi zmdi-edit"></i></a>

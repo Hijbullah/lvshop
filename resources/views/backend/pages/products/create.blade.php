@@ -248,9 +248,29 @@
 <script src="{{ asset('backend/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }} "></script>
 
 <script>
+    
     $(document).ready(function() {
+        //slug Activation
+        $('#product_name').keyup(function () {
+           var str = $(this).val();
+           var trimmed = $.trim(str);
+           var slug = trimmed.replace(/[^a-z0-9-]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+           $('#product_slug').val(slug.toLowerCase().substr(0, 100));
+        });
+        // Summernote
         $('#product_description').summernote({
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['style']],
+                ['font', ['fontsize', 'color']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['fontname']],
+                ['para', ['paragraph', 'ol', 'ul', 'height']],
+                ['insert', ['link','picture',  'table', 'hr', 'video']], // image and doc are customized buttons
+                ['misc', ['undo', 'redo', 'codeview', 'fullscreen', 'help']],
+            ],
             height: 300,
+            placeholder: 'write here...'
         });
     });
 </script>

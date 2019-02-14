@@ -89,7 +89,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('backend.pages.products.show', compact('product'));
+        $images = explode(',', $product->images);
+        return view('backend.pages.products.show', compact('product', 'images'));
     }
 
     /**

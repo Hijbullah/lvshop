@@ -29,7 +29,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:255', 'unique:categories'],
+            'name' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:100', 'unique:categories']
         ]);
         
@@ -88,7 +88,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        Category::destroy($category->id);
+        return redirect()->route('categories.index')->with('status', 'Category has been deleted successfully');
     }
 
 }
