@@ -26,6 +26,7 @@ Route::namespace('Backend\Auth')->group(function () {
 
 Route::namespace('Backend')->group(function () {
     Route::get('/', 'AdminController@showDashboard')->name('admin.dashboard');
+    Route::get('/admins/all', 'AdminController@loadAdmin');
     Route::resource('admins', 'AdminController');
     Route::resource('categories', 'CategoryController')->except([
         'create', 'edit'

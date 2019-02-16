@@ -35,18 +35,19 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = Admin::all();
-        return view('backend.pages.admins.index', compact('admins'));
+       
+        return view('backend.pages.admins.index');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Load the listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function loadAdmin()
     {
-        //
+        $admins = Admin::all();
+        return response()->json($admins);
     }
 
     /**

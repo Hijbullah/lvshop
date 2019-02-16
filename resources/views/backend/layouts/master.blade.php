@@ -51,7 +51,7 @@
     </div>
 
     <!-- Jquery Core Js -->
-    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('backend/bundles/libscripts.bundle.js') }} "></script>
     <!-- Lib Scripts Plugin Js -->
     <script src="{{ asset('backend/bundles/vendorscripts.bundle.js') }} "></script>
