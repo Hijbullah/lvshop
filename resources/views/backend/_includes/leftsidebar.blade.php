@@ -1,70 +1,114 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="" class="brand-link">
+        <img src="{{asset('backend/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">LV SHOP</span>
+    </a>
 
-<!-- Left Sidebar -->
-<aside id="leftsidebar" class="sidebar">
-    <div class="navbar-brand">
-        <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
-        <a href="#"><img src="{{ asset('backend/images/logo.svg') }}" width="25" alt="Aero"><span class="m-l-10">Aero</span></a>
-    </div>
-    <div class="menu">
-        <ul class="list">
-            <li>
-                <div class="user-info">
-                    <a class="image" href="#"><img src="{{ asset('backend/images/profile_av.jpg') }}" alt="User"></a>
-                    <div class="detail">
-                        <h4>{{ auth()->guard('admin')->user()->name }}</h4>
-                        <small>Super Admin</small>
-                    </div>
-                </div>
-            </li>
-            <li class="{{ request()->is('admin') ? 'active' : '' }}"><a href=" {{ route('admin.dashboard') }} "><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
-            <li class="{{ request()->is('admin/categories*') ? 'active' : '' }}"><a href=" {{ route('categories.index') }} "><i class="zmdi zmdi-apps"></i><span>Categories</span></a></li>
-            <li class="{{ request()->is('admin/products*') ? 'active' : '' }}""><a href=" {{ route('products.index') }} "><i class="zmdi zmdi-shopping-cart"></i><span>Products</span></a></li>
-            {{-- <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>Product Section</span></a>
-                <ul class="ml-menu">
-                    <li><a href=" {{ route('categories.index') }} ">Categories</a></li>
-                    <li><a href="{{ route('products.index') }}">Products</a></li>
-                </ul>
-            </li>
-            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-assignment"></i><span>Projects</span></a>
-                <ul class="ml-menu">
-                    <li><a href="#">Projects List</a></li>
-                    <li><a href="#">Taskboard</a></li>
-                    <li><a href="#">Ticket List</a></li>
-                    <li><a href="#">Ticket Detail</a></li>
-                </ul>
-            </li>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{ asset('backend/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">{{ auth()->guard('admin')->user()->name }}</a>
+            </div>
+        </div>
 
-            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Ecommerce</span></a>
-                <ul class="ml-menu">
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Product</a></li>
-                    <li><a href="#">Product List</a></li>
-                    <li><a href="#">Product detail</a></li>
-                </ul>
-            </li>
-
-
-
-
-            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-map"></i><span>Authentication</span></a>
-                <ul class="ml-menu">
-                    <li><a href="#">Sign In</a></li>
-                    <li><a href="#">Sign Up</a></li>
-                    <li><a href="#">Forgot Password</a></li>
-                    <li><a href="#">Page 404</a></li>
-                    <li><a href="#">Page 500</a></li>
-                    <li><a href="#">Page Offline</a></li>
-                    <li><a href="#">Locked Screen</a></li>
-                </ul>
-            </li>
-            --}}
-            <li class="open_top"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-lock"></i><span>Administrator</span></a>
-                <ul class="ml-menu">
-                    <li><a href="#">Admins Section</a></li>
-                    <li><a href="#">Roles Section</a></li>
-                    <li><a href="#">Permissions section</a></li>
-                </ul>
-            </li> 
-        </ul>
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->is('admin') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                {{-- <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-cogs"></i>
+                        <p>
+                            Administration
+                            <i class="right fa fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-unlock-alt nav-icon"></i>
+                                <p>Admins</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-users nav-icon"></i>
+                                <p>Customers</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li> --}}
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-th"></i>
+                        <p>
+                            Simple Link
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header text-uppercase">Stock Management</li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-suitcase-rolling nav-icon"></i>
+                        <p>Categories</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fab fa-product-hunt nav-icon"></i>
+                        <p>Products</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-shopping-cart nav-icon"></i>
+                        <p>Purchases</p>
+                    </a>
+                </li>
+                <li class="nav-header text-uppercase">Administration</li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-unlock-alt nav-icon"></i>
+                        <p>Admins</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-users nav-icon"></i>
+                        <p>Customers</p>
+                    </a>
+                </li>
+                <li class="nav-header text-uppercase">Others</li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.logout') }}" class="nav-link"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();"
+                    >
+                        <i class="fas fa-sign-out-alt nav-icon"></i>
+                        <p>
+                            Logout
+                        </p>
+                    </a>
+                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>  
+            </ul>
+        </nav>
     </div>
 </aside>
