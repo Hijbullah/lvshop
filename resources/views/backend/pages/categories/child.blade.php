@@ -1,17 +1,32 @@
-<ul class="">
-    <li>
-        <div class="radio cat-radio-item">
-            <input type="radio" id="{{ $category->id }}" name="parent_id" value="{{ $category->id }}">
-            <label for="{{ $category->id }}"> {{ $category->name }} </label>
-            <a href="{{ route('categories.destroy', $category->id) }}" class="btn btn-round btn-danger waves-effect waves-float btn-sm waves-light cat-data-delete"><i class="zmdi zmdi-delete"></i></a>
 
-            
-        </div>
-        @if (count($category->children) > 0)
-            @foreach($category->children as $category)
-                @include('backend.pages.categories.child', $category)
-            @endforeach
-        @endif
-    </li>
+<tr>
+    <td> 
+        <label>
+            <input type="radio" class="flat-red" name="parent_id" value="{{ $category->id }}">
+        </label>
+    </td>
+    <td>
+        @for ($i = 0; $i < count($category->ancestors); $i++)
+            {{ '-' }} 
+        @endfor
+
+    {{  $category->name }} 
     
-</ul>
+
+    
+    </td>
+    <td>
+        {!! $category->status ? '<span class="badge bg-success">Published</span>' : '<span class="badge bg-danger">NOT Published</span>' !!} 
+    </td>
+    <td>
+        <a href="#" title="Edit" class="btn btn-info btn-sm text-white mr-2"><i class="fas fa-edit"></i></a>
+        <a href="{{ route('categories.destroy', $category->id) }}" title="DELETE" class="btn btn-sm btn-danger text-white category-delete"><i class="fas fa-trash-alt"></i></a>
+    </td>
+</tr>
+
+@if($category->children)
+    @foreach ($category->children as $category)
+    @include('backend.pages.categories.child', $category)
+    @endforeach
+@endif
+

@@ -15,7 +15,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::get()->toTree();
+        //$categories = Category::with('ancestors')->get();
+        $categories = Category::get()->toTree();;
+        // $categories = Category::with('children')->get();
+        
         return view('backend.pages.categories.index', compact('categories'));
     }
 
@@ -42,8 +45,7 @@ class CategoryController extends Controller
             $category = Category::create($node);
         }
 
-        $categories = Category::get()->toTree();
-        return view('backend.pages.categories.index', compact('categories'))->with('Category has created');
+        return redirect()->route('categories.index') ->with('status','Category has created');
     }
 
     /**

@@ -63,7 +63,7 @@
                 </li>
                 <li class="nav-header text-uppercase">Stock Management</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('categories.index') }}" class="nav-link {{ request()->is('admin/categories*') ? 'active' : '' }}">
                         <i class="fas fa-suitcase-rolling nav-icon"></i>
                         <p>Categories</p>
                     </a>
