@@ -49031,8 +49031,8 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! H:\Hijbu\server\htdocs\laravel_projects\lvshop\resources\js\main.js */"./resources/js/main.js");
-module.exports = __webpack_require__(/*! H:\Hijbu\server\htdocs\laravel_projects\lvshop\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! D:\servers\xampp\htdocs\new\lvshop\resources\js\main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! D:\servers\xampp\htdocs\new\lvshop\resources\sass\main.scss */"./resources/sass/main.scss");
 
 
 /***/ })

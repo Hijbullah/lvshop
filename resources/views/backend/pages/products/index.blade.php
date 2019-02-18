@@ -1,65 +1,85 @@
 @extends('backend.layouts.master')
 
+@section('page-header', 'Products')
 @section('page-title', 'Products')
 
 @section('main-content')
-    <section class="content">
-        <div class="body_scroll">
-            <div class="container-fluid">
-                <div class="row clearfix">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                        <div class="card">
-                            @include('includes.alert')
-                            <div class="header">
-                                <h2 class="float-left"><strong>All</strong> Products</h2>
-                                <div class="header-right float-right">
-                                    <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">Add New</a>
-                                </div>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-hover c_table">
-                                    <thead>
-                                    <tr>
-                                        <th style="width:60px;">Sl.</th>
-                                        <th>Name</th>
-                                        <th>New Price</th>
-                                        <th>Old Price</th>
-                                        <th>Quantity</th>
-                                        <th>Category</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($products as $product)
-                                        <tr>
-                                            <td>{{ $loop->index + 1 }}</td>
-                                            <td>{{ str_limit($product->name, 15, '...') }}</td>
-                                            <td>$ {{ $product->sale_price }}</td>
-                                            <td>$ {{ $product->unit_price }}</td>
-                                            <td>{{ $product->quantity }}</td>
-                                            <td>{{ $product->category->name }}</td>
-                                            <td>
-                                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm waves-effect"><i class="zmdi zmdi-eye"></i></a>
-                                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-success waves-effect waves-float btn-sm waves-light"><i class="zmdi zmdi-edit"></i></a>
-                                                <a href="{{ route('products.destroy', $product->id) }}" class="btn btn-danger waves-effect waves-float btn-sm waves-light data-delete"><i class="zmdi zmdi-delete"></i></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <form id="delete-form"  method="post" style="display:none">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                        </div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    @include('includes.alert')
+                    <div class="card-header clearfix">
+                        <h3 class="card-title float-left">All Products</h3>
+                        <a href="{{ route('products.create') }}" class="btn btn-sm btn-success btn-flat text-white float-right">
+                            <i class="fas fa-plus-circle"></i> Add New Product
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                                @foreach($products as $product)
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ str_limit($product->name, 15, '...') }}</td>
+                                    <td>$ {{ $product->sale_price }}</td>
+                                    <td> {{ $product->quantity }}</td>
+                                    <td>{{ $product->category->name }}</td>
+                                    <td>{{ $product->category->name }}</td>
+                                    <td>
+                                        <span class="badge bg-danger">55%</span>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm text-white mr-2"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('products.edit', $product->id) }}" title="Edit" class="btn btn-info btn-sm text-white mr-2"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('products.destroy', $product->id) }}" title="DELETE" class="btn btn-sm btn-danger text-white category-delete"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <form id="delete-form"  method="post" style="display:none">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer clearfix">
+                        <ul class="pagination pagination-sm m-0 float-right">
+                            <li class="page-item">
+                                <a class="page-link" href="#">«</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">»</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    
+    </div>
+</section>
+
+
 @endsection
 
 @push('page-css')

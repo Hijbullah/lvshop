@@ -12,8 +12,9 @@
     <meta name="description" content="Responsive Ecommerce site with Bootstrap 4 and VueJS.">
 
     <title>{{ config('app.name', 'LV SHOP') }} | @yield('page-title')</title>
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     @stack('page-css')
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    
 </head>
 
 <body class="hold-transition sidebar-mini">
