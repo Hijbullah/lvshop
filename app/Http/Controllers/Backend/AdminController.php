@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -35,8 +36,29 @@ class AdminController extends Controller
      */
     public function index()
     {
-       
-        return view('backend.pages.admins.index');
+        $admins = Admin::all();
+        return view('backend.pages.admins.index', compact('admins'));
+    }
+
+    /**
+     * Display a listing of the Users.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function customers()
+    {
+        $customers = User::all();
+        return view('backend.pages.admins.customers', compact('customers'));
+    }
+
+    /**
+     * Create a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        
     }
 
     /**

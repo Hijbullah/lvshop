@@ -82,13 +82,13 @@
                 </li>
                 <li class="nav-header text-uppercase">Administration</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admins.index') }}" class="nav-link {{ request()->is('admin/admins*') ? 'active' : '' }}">
                         <i class="fas fa-unlock-alt nav-icon"></i>
                         <p>Admins</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('customers') }}" class="nav-link {{ request()->is('admin/customers*') ? 'active' : '' }}">
                         <i class="fas fa-users nav-icon"></i>
                         <p>Customers</p>
                     </a>

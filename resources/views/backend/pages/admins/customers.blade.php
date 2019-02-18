@@ -1,8 +1,8 @@
 @extends('backend.layouts.master')
 
-@section('page-title', 'User - Admins')
+@section('page-title', 'User - Customers')
 
-@section('page-header', 'User - Admins')
+@section('page-header', 'User - Customers')
 
 @section('main-content')
 
@@ -12,11 +12,8 @@
             <div class="col-lg-12">
                 <div class="card">
                     @include('includes.alert')
-                    <div class="card-header clearfix">
-                        <h3 class="card-title float-left">All Admins</h3>
-                        <a href="{{ route('admins.create') }}" class="btn btn-sm btn-success btn-flat text-white float-right">
-                            <i class="fas fa-plus-circle"></i> Add New Admin
-                        </a>
+                    <div class="card-header ">
+                        <h3 class="card-title">All Customers</h3>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered">
@@ -27,21 +24,15 @@
                                     <th>Email</th>
                                     <th>Created At</th>
                                     <th>Status</th>
-                                    <th>Actions</th>
                                 </tr>
-                                @foreach($admins as $admin)
+                                @foreach($customers as $customer)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $admin->name }}</td>
-                                    <td>$ {{ $admin->email }}</td>
-                                    <td> {{ $admin->created_at->diffForHumans() }}</td>
+                                    <td>{{ $customer->name }}</td>
+                                    <td>$ {{ $customer->email }}</td>
+                                    <td> {{ $customer->created_at->diffForHumans() }}</td>
                                     <td>
                                         <span class="badge bg-success">Active</span> 
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('admins.show', $admin->id) }}" class="btn btn-info btn-sm text-white mr-2"><i class="fas fa-eye"></i></a>
-                                        <a href="{{ route('admins.edit', $admin->id) }}" title="Edit" class="btn btn-info btn-sm text-white mr-2"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ route('admins.destroy', $admin->id) }}" title="DELETE" class="btn btn-sm btn-danger text-white product-delete"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
