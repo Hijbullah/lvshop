@@ -35,14 +35,13 @@
                                     <td>$ {{ $product->sale_price }}</td>
                                     <td> {{ $product->quantity }}</td>
                                     <td>{{ $product->category->name }}</td>
-                                    <td>{{ $product->category->name }}</td>
                                     <td>
-                                        <span class="badge bg-danger">55%</span>
+                                        {!! $product->status ? '<span class="badge bg-success">Published</span>' : '<span class="badge bg-danger">NOT Published</span>' !!} 
                                     </td>
                                     <td>
                                         <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm text-white mr-2"><i class="fas fa-eye"></i></a>
                                         <a href="{{ route('products.edit', $product->id) }}" title="Edit" class="btn btn-info btn-sm text-white mr-2"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ route('products.destroy', $product->id) }}" title="DELETE" class="btn btn-sm btn-danger text-white category-delete"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="{{ route('products.destroy', $product->id) }}" title="DELETE" class="btn btn-sm btn-danger text-white product-delete"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -74,6 +73,10 @@
                         </ul>
                     </div>
                 </div>
+                <form method="POST" id = "product-delete-form" style="display:none">
+                    @method('DELETE')
+                    @csrf
+                </form>
             </div>
         </div>
     </div>
@@ -90,8 +93,8 @@
 
 @push('page-scripts')
     <script>
-            var products = document.querySelectorAll('.data-delete');
-            var deleteForm = document.getElementById('delete-form');
+            var products = document.querySelectorAll('.product-delete');
+            var deleteForm = document.getElementById('product-delete-form');
             for(var product of Array.from(products)) {
                 product.addEventListener('click', function(event) {
                     event.preventDefault();
