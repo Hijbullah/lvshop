@@ -53,7 +53,7 @@
                     </ul>
                 </li> --}}
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ url('admin/blank') }}" class="nav-link {{ request()->is('admin/blank') ? 'active' : '' }}">
                         <i class="nav-icon fa fa-th"></i>
                         <p>
                             Simple Link

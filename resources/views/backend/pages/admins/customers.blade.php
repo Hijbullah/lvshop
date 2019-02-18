@@ -29,7 +29,7 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $customer->name }}</td>
-                                    <td>$ {{ $customer->email }}</td>
+                                    <td>{{ $customer->email }}</td>
                                     <td> {{ $customer->created_at->diffForHumans() }}</td>
                                     <td>
                                         <span class="badge bg-success">Active</span> 
