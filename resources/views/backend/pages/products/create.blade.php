@@ -217,23 +217,33 @@
 @endsection
 
 @push('page-css')
+
+<link rel="stylesheet" href="{{ asset('backend/plugins/iCheck/all.css') }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
 <style>
     .categories-product {
         max-height: 300px;
         overflow: auto;
     }
-</style>
 
-<link rel="stylesheet" href="{{ asset('backend/plugins/iCheck/all.css') }}">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+    .note-toolbar.card-header.card-header-modify {
+        background-color: #f5f5f5;
+    }
+    .note-toolbar.card-header.card-header-modify a{
+        color: #000;
+    }
+</style>
+    
 {{-- <link rel="stylesheet" href="{{ asset('backend/plugins/summernote/dist/summernote.css') }}"> --}}
 {{-- <link rel="stylesheet" href="{{ asset('backend/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}"> --}}
+{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet"> --}}
 @endpush
 
 
 
 @push('page-scripts')
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script> --}}
 <script src="{{ asset('backend/plugins/iCheck/icheck.min.js') }}"></script>
 {{-- <script src="{{ asset('backend/plugins/summernote/dist/summernote.js') }} "></script> --}}
 {{-- <script src="{{ asset('backend/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }} "></script> --}}
@@ -268,6 +278,7 @@
             height: 300,
             placeholder: 'write here...'
         });
+        $( '.note-toolbar').addClass('card-header-modify');
     });
 </script>
 @endpush
