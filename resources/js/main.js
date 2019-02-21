@@ -9,13 +9,17 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-
 // vForm 
 import { Form, HasError, AlertError } from 'vform'
 
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 window.Form = Form
+
+
+// fileters
+require('./filters')
+
 
 /**
  * The following block of code may be used to automatically register your

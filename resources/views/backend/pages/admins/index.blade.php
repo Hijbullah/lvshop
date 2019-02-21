@@ -46,11 +46,11 @@
                                 </tr>
                                 @endforeach --}}
                               
-                                <tr v-for="admins in admin" :key="admin.id">
+                                <tr v-for="admin in admins" :key="admin.id">
                                     <td> @{{ admin.id }} </td>
-                                    <td> @{{ admin->name }} </td>
-                                    <td> @{{ admin->email }} </td>
-                                    <td> @{{ admin->created_at }} </td>
+                                    <td> @{{ admin.name }} </td>
+                                    <td> @{{ admin.email }} </td>
+                                    <td> @{{ admin.created_at | dateFormat }} </td>
                                     <td>
                                         <span class="badge bg-success">Active</span> 
                                     </td>
