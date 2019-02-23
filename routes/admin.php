@@ -35,6 +35,8 @@ Route::namespace('Backend')->group(function () {
     Route::resource('products', 'ProductController');
     Route::get('showing', 'ProductController@showing');
 
+    Route::view('/invoice', 'backend.pages.invoice')->name('sale.invoice');
+
 });
 
 

@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="" class="brand-link">
         <img src="{{asset('backend/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">LV SHOP</span>
+        <span class="brand-text font-weight-light">{{ config('app.name', 'LV SHOP') }}</span>
     </a>
 
     <!-- Sidebar -->
@@ -52,13 +52,32 @@
                         </li>
                     </ul>
                 </li> --}}
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{ url('admin/blank') }}" class="nav-link {{ request()->is('admin/blank') ? 'active' : '' }}">
                         <i class="nav-icon fa fa-th"></i>
                         <p>
                             Simple Link
                             <span class="right badge badge-danger">New</span>
                         </p>
+                    </a>
+                </li> --}}
+                <li class="nav-header text-uppercase">Sales Management</li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link {{ request()->is('admin/orders*') ? 'active' : '' }}">
+                            <i class="fas fa-dolly nav-icon"></i>
+                        <p>Orders</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link {{ request()->is('admin/sales*') ? 'active' : '' }}">
+                        <i class="fas fa-shopping-cart nav-icon"></i>
+                        <p>Sales</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link {{ request()->is('admin/delivery*') ? 'active' : '' }}">
+                        <i class="fas fa-truck nav-icon"></i>
+                        <p>delivery</p>
                     </a>
                 </li>
                 <li class="nav-header text-uppercase">Stock Management</li>
@@ -76,8 +95,14 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-shopping-cart nav-icon"></i>
-                        <p>Purchases</p>
+                        <i class="fas fa-level-down-alt nav-icon"></i>
+                        <p>Receiving</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-dolly-flatbed nav-icon"></i>
+                        <p>Suppliers</p>
                     </a>
                 </li>
                 <li class="nav-header text-uppercase">Administration</li>
