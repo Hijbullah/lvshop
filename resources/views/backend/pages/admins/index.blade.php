@@ -14,7 +14,7 @@
                     @include('includes.alert')
                     <div class="card-header clearfix">
                         <h3 class="card-title float-left">All Admins</h3>
-                        <button class="btn btn-sm btn-success btn-flat text-white float-right" data-toggle="modal" data-target="#modal-admin">
+                        <button class="btn btn-sm btn-success btn-flat text-white float-right" @click="modalOpen">
                             <i class="fas fa-plus-circle"></i> Add New Admin
                         </button>
                     </div>
@@ -55,9 +55,9 @@
                                         <span class="badge bg-success">Active</span> 
                                     </td>
                                     <td>
-                                        {{-- <a href="{{ route('admins.show', $admin->id) }}" class="btn btn-info btn-sm text-white mr-2"><i class="fas fa-eye"></i></a>
-                                        <a href="{{ route('admins.edit', $admin->id) }}" title="Edit" class="btn btn-info btn-sm text-white mr-2"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ route('admins.destroy', $admin->id) }}" title="DELETE" class="btn btn-sm btn-danger text-white product-delete"><i class="fas fa-trash-alt"></i></a> --}}
+                                        <button @click="viewAdmin(admin.id)" class="btn btn-success btn-sm text-white mr-2"><i class="fas fa-eye"></i></button>
+                                        <button @click="editAdmin(admin)" title="Edit" class="btn btn-info btn-sm text-white mr-2"><i class="fas fa-edit"></i></button>
+                                        {{-- <a href="{{ route('admins.destroy', $admin->id) }}" title="DELETE" class="btn btn-sm btn-danger text-white product-delete"><i class="fas fa-trash-alt"></i></a> --}}
                                     </td>
                                 </tr>
                                
@@ -116,8 +116,10 @@
         new Vue({
             el: '#admin',
             data: {
+                createMode: true,
                 admins: {},
                 form: new Form({
+                    id: '',
                     name: '',
                     email: '',
                     password: '',
@@ -125,6 +127,16 @@
                 })
             },
             methods: {
+                modalOpen() {
+                    this.createMode = true;
+                    $('#modal-admin').modal('show');
+                },
+                modalClose() {
+                    this.createMode = true;
+                    this.form.clear();
+                    this.form.reset();
+                    $('#modal-admin').modal('hide');
+                },
                 loadAdmins() {
                     axios.get('/admin/admins/all')
                     .then(response => {
@@ -140,12 +152,37 @@
                 registerAdmin() {
                     this.form.post('/admin/admins')
                     .then(response => {
+                        this.modalClose();
+                        this.loadAdmins();
                         console.log(response);
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
-                    console.log('yeop')
+                    console.log('register')
+                },
+                updateAdmin() {
+                    this.form.put('/admin/admins/' + this.form.id)
+                    .then(response => {
+                        this.modalClose();
+                        this.loadAdmins();
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error.response.data);
+                    });
+                    console.log('Update')
+                },
+
+
+                editAdmin(admin) {
+                    this.createMode = false;
+                    $('#modal-admin').modal('show');
+                    this.form.fill (admin);
+                },
+                viewAdmin(id) {
+                    let url = '/admin/admins/' + id;
+                    window.location.href = url;
                 }
             }, 
             created() {

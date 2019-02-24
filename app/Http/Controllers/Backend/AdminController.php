@@ -104,7 +104,7 @@ class AdminController extends Controller
      */
     public function show(Admin $admin)
     {
-        //
+        return view('backend.pages.admins.show', compact('admin'));
     }
 
     /**
@@ -127,7 +127,18 @@ class AdminController extends Controller
      */
     public function update(Request $request, Admin $admin)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:191'],
+            'email' => ['required', 'string', 'email', 'max:191', 'unique:admins,email,' . $admin->id],
+            'password' => ['sometimes', 'string', 'min:6', 'confirmed'],
+        ]);
+        
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $request->has('password') ? $admin->password = Hash::make($request->password) : '';
+        
+        $admin->save();
+        return response()->json(['message' => 'Updated']);
     }
 
     /**
