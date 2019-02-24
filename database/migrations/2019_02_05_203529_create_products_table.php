@@ -25,10 +25,9 @@ class CreateProductsTable extends Migration
             $table->longText('description')->nullable();
             $table->mediumText('images')->nullable();
             $table->unsignedInteger('quantity')->nullable();
-            $table->float('unit_price', 8, 2)->nullable();
             $table->float('sale_price', 8, 2)->nullable();
-            $table->float('discount_price', 8, 2)->nullable();
-            $table->tinyInteger('status')->default(1);
+            $table->float('price_after_discount', 8, 2)->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->foreign('brand_id')->references('id')->on('brands')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
