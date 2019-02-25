@@ -29,53 +29,21 @@
                         </p>
                     </a>
                 </li>
-                {{-- <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-cogs"></i>
-                        <p>
-                            Administration
-                            <i class="right fa fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-unlock-alt nav-icon"></i>
-                                <p>Admins</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-users nav-icon"></i>
-                                <p>Customers</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li> --}}
-                {{-- <li class="nav-item">
-                    <a href="{{ url('admin/blank') }}" class="nav-link {{ request()->is('admin/blank') ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-th"></i>
-                        <p>
-                            Simple Link
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li> --}}
                 <li class="nav-header text-uppercase">Sales Management</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ request()->is('admin/orders*') ? 'active' : '' }}">
+                    <a href="{{ url('admin/orders') }}" class="nav-link {{ request()->is('admin/orders*') ? 'active' : '' }}">
                             <i class="fas fa-dolly nav-icon"></i>
                         <p>Orders</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ request()->is('admin/sales*') ? 'active' : '' }}">
+                    <a href="{{ url('admin/sales') }}" class="nav-link {{ request()->is('admin/sales*') ? 'active' : '' }}">
                         <i class="fas fa-shopping-cart nav-icon"></i>
                         <p>Sales</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ request()->is('admin/delivery*') ? 'active' : '' }}">
+                    <a href="{{ url('admin/deliverys') }}" class="nav-link {{ request()->is('admin/delivery*') ? 'active' : '' }}">
                         <i class="fas fa-truck nav-icon"></i>
                         <p>delivery</p>
                     </a>
@@ -94,13 +62,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ url('admin/receivings') }}" class="nav-link {{ request()->is('admin/receiving*') ? 'active' : '' }}">
                         <i class="fas fa-level-down-alt nav-icon"></i>
                         <p>Receiving</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ url('admin/suppliers') }}" class="nav-link {{ request()->is('admin/supplier*') ? 'active' : '' }}">
                         <i class="fas fa-dolly-flatbed nav-icon"></i>
                         <p>Suppliers</p>
                     </a>

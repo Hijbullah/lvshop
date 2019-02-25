@@ -11,10 +11,10 @@
 
                 <div class="row">
                     <div class="col-lg-7 col-md-7 col-sm-12">
-                        <div class="card card-primary">
+                        <div class="card card-dark">
                             <div class="card-header clearfix">
-                                <h3 class="card-title float-left"></h3> Add New Product
-                                <a href="{{ route('products.index') }}" class="btn btn-sm btn-success btn-flat text-white float-right">
+                                <h3 class="card-title float-left">Add New Product</h3> 
+                                <a href="{{ route('products.index') }}" class="btn btn-sm btn-default btn-flat text-dark float-right">
                                     <i class="fas fa-backward"></i> Back To All Products
                                 </a>
                             </div>
@@ -82,7 +82,7 @@
                     <div class="col-lg-5 col-md-5 col-sm-12">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card card-default">
+                                <div class="card card-dark">
                                     <div class="card-header">
                                         <h3 class="card-title">Pricing & Quantity</h3>
                                     </div>
@@ -133,7 +133,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="card card-danger">
+                                <div class="card card-dark">
                                     <div class="card-header">
                                         <h3 class="card-title">Select Categories</h3>
                                     </div>
@@ -167,7 +167,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="card card-info">
+                                <div class="card card-dark">
                                     <div class="card-header clearfix">
                                         <h3 class="card-title">Featured Image</h3>
                                     </div>
@@ -185,7 +185,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="card card-success">
+                                <div class="card card-dark">
                                     <div class="card-header clearfix">
                                         <h3 class="card-title">SEO Content</h3>
                                     </div>
@@ -209,7 +209,7 @@
                     </div>
                 </div>
                 <div class="form-group text-center">
-                    <button class="btn btn-md btn-primary btn-flat">Add New Product</button>
+                    <button class="btn btn-md btn-dark btn-flat">Add New Product</button>
                 </div>
             </form>    
         </div>
@@ -217,33 +217,23 @@
 @endsection
 
 @push('page-css')
-
-<link rel="stylesheet" href="{{ asset('backend/plugins/iCheck/all.css') }}">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
 <style>
     .categories-product {
         max-height: 300px;
         overflow: auto;
     }
-
-    .note-toolbar.card-header.card-header-modify {
-        background-color: #f5f5f5;
-    }
-    .note-toolbar.card-header.card-header-modify a{
-        color: #000;
-    }
 </style>
-    
+
+<link rel="stylesheet" href="{{ asset('backend/plugins/iCheck/all.css') }}">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
 {{-- <link rel="stylesheet" href="{{ asset('backend/plugins/summernote/dist/summernote.css') }}"> --}}
 {{-- <link rel="stylesheet" href="{{ asset('backend/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}"> --}}
-{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet"> --}}
 @endpush
 
 
 
 @push('page-scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script> --}}
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
 <script src="{{ asset('backend/plugins/iCheck/icheck.min.js') }}"></script>
 {{-- <script src="{{ asset('backend/plugins/summernote/dist/summernote.js') }} "></script> --}}
 {{-- <script src="{{ asset('backend/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }} "></script> --}}
@@ -278,7 +268,6 @@
             height: 300,
             placeholder: 'write here...'
         });
-        $( '.note-toolbar').addClass('card-header-modify');
     });
 </script>
 @endpush

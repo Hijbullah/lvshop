@@ -14,6 +14,23 @@
 Route::get('/blank', function () {
     return view('backend.pages.blank');
 });
+Route::get('/start', function () {
+    return view('backend.starter');
+});
+Route::get('/orders', function () {
+    return view('backend.pages.order');
+});
+Route::get('/sales', function () {
+    return view('backend.pages.sale');
+});
+Route::get('/deliverys', function () {
+    return view('backend.pages.delivery');
+});
+Route::get('/receivings', function () {
+    return view('backend.pages.receiving');
+});
+
+
 
 // Admin Auth Routes
 
@@ -33,9 +50,11 @@ Route::namespace('Backend')->group(function () {
         'create', 'edit'
     ]);
     Route::resource('products', 'ProductController');
+    Route::resource('suppliers', 'SupplierController');
     Route::get('showing', 'ProductController@showing');
 
     Route::view('/invoice', 'backend.pages.invoice')->name('sale.invoice');
+
 });
 
 
