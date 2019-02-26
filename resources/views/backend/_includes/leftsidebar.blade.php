@@ -50,6 +50,18 @@
                 </li>
                 <li class="nav-header text-uppercase">Stock Management</li>
                 <li class="nav-item">
+                    <a href="{{ route('brands.index') }}" class="nav-link {{ request()->is('admin/brands*') ? 'active' : '' }}">
+                        <i class="fas fa-building nav-icon"></i>
+                        <p>Brands</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/suppliers') }}" class="nav-link {{ request()->is('admin/supplier*') ? 'active' : '' }}">
+                        <i class="fas fa-dolly-flatbed nav-icon"></i>
+                        <p>Suppliers</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('categories.index') }}" class="nav-link {{ request()->is('admin/categories*') ? 'active' : '' }}">
                         <i class="fas fa-suitcase-rolling nav-icon"></i>
                         <p>Categories</p>
@@ -65,12 +77,6 @@
                     <a href="{{ url('admin/receivings') }}" class="nav-link {{ request()->is('admin/receiving*') ? 'active' : '' }}">
                         <i class="fas fa-level-down-alt nav-icon"></i>
                         <p>Receiving</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('admin/suppliers') }}" class="nav-link {{ request()->is('admin/supplier*') ? 'active' : '' }}">
-                        <i class="fas fa-dolly-flatbed nav-icon"></i>
-                        <p>Suppliers</p>
                     </a>
                 </li>
                 <li class="nav-header text-uppercase">Administration</li>

@@ -26,7 +26,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('Backend.pages.brands.create');
     }
 
     /**
@@ -37,7 +37,14 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'gbin' => ['required', 'max:10' ],
+            'name' => ['required', 'string', 'max:191'],
+            'slug' => ['required', 'string', 'max:191', 'unique:brands'],
+        ]);
+
+        Brand::create($request->all());
+        return redirect()->route('brands.index')->with('status', 'Brand added successfully');
     }
 
     /**
@@ -48,7 +55,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        return view('Backend.pages.brands.show', compact('brand'));
     }
 
     /**
@@ -59,7 +66,7 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return view('Backend.pages.brands.edit', compact('brand'));
     }
 
     /**
@@ -71,7 +78,14 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        $this->validate($request, [
+            'gbin' => ['required', 'max:10' ],
+            'name' => ['required', 'string', 'max:191'],
+            'slug' => ['required', 'string', 'max:191', 'unique:brands,slug,' . $brand->id],
+        ]);
+
+        $brand->update($request->all());
+        return redirect()->route('brands.index')->with('status', 'Brand updated successfully');
     }
 
     /**
@@ -82,6 +96,7 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        Brand::destroy($brand->id);
+        return redirect()->route('brands.index')->with('status', 'Brand Deleted successfully');
     }
 }

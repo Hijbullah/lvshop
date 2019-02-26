@@ -50,6 +50,7 @@ Route::namespace('Backend')->group(function () {
         'create', 'edit'
     ]);
     Route::resource('products', 'ProductController');
+    Route::resource('brands', 'BrandController');
     Route::resource('suppliers', 'SupplierController');
     Route::get('showing', 'ProductController@showing');
 
