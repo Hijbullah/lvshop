@@ -36,16 +36,24 @@
                         <p>Orders</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="{{ url('admin/sales') }}" class="nav-link {{ request()->is('admin/sales*') ? 'active' : '' }}">
+                    <a href="{{ route('customers') }}" class="nav-link {{ request()->is('admin/customers*') ? 'active' : '' }}">
+                        <i class="fas fa-users nav-icon"></i>
+                        <p>Customers</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('admin/shipping') }}" class="nav-link {{ request()->is('admin/shipping*') ? 'active' : '' }}">
                         <i class="fas fa-shopping-cart nav-icon"></i>
-                        <p>Sales</p>
+                        <p>Shipping</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('admin/deliverys') }}" class="nav-link {{ request()->is('admin/delivery*') ? 'active' : '' }}">
+                    <a href="{{ url('admin/cupon') }}" class="nav-link {{ request()->is('admin/cupon*') ? 'active' : '' }}">
                         <i class="fas fa-truck nav-icon"></i>
-                        <p>delivery</p>
+                        <p>Cupon Code</p>
                     </a>
                 </li>
                 <li class="nav-header text-uppercase">Stock Management</li>
@@ -87,11 +95,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('customers') }}" class="nav-link {{ request()->is('admin/customers*') ? 'active' : '' }}">
-                        <i class="fas fa-users nav-icon"></i>
-                        <p>Customers</p>
+                    <a href="{{ url('/admin/setting') }}" class="nav-link {{ request()->is('admin/setting*') ? 'active' : '' }}">
+                        <i class="fas fa-cogs nav-icon"></i>
+                        <p>Setting</p>
                     </a>
                 </li>
+
                 <li class="nav-header text-uppercase">Others</li>
                 <li class="nav-item">
                     <a href="{{ route('admin.logout') }}" class="nav-link"

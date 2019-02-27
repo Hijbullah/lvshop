@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
-@section('page-title', 'Receiving')
-@section('page-header', 'Receiving')
+@section('page-title', 'Order')
+@section('page-header', 'Order')
 
 @section('main-content')
 <section class="content">
@@ -11,15 +11,15 @@
                 <div class="card card-dark">
                     @include('includes.alert')
                     <div class="card-header clearfix pt-3">
-                        <h3 class="card-title float-left">All Receiving</h3>
+                        <h3 class="card-title float-left">All Orders</h3>
                         <a href="#" class="btn btn-sm bg-white text-dark btn-flat float-right">
-                            <i class="fab fa-searchengin"></i> Completed receiving's
+                            <i class="fab fa-searchengin"></i> Completed Order's
                         </a>
                         <a href="#" class="btn btn-sm bg-white text-dark  btn-flat float-right mr-1">
-                            <i class="fab fa-searchengin"></i> Paid receiving's
+                            <i class="fab fa-searchengin"></i> Paid Order's
                         </a>
                         <a href="#" class="btn btn-sm bg-white text-dark  btn-flat float-right mr-1">
-                            <i class="fab fa-searchengin"></i> Uncompleted receiving's
+                            <i class="fab fa-searchengin"></i> Uncompleted Order's
                         </a>
                     </div>
                     <div class="card-body">
@@ -28,13 +28,13 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
-                                        <th>Receiving Code</th>
+                                        <th>Order Code</th>
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
                                         <th>Payment Status</th>
                                         <th>Payment method</th>
-                                        <th>Receiving Status</th>
+                                        <th>Order Status</th>
                                         <th class="text-center" width="170px">Actions</th>
                                     </tr>
                                 </thead>
