@@ -13,6 +13,7 @@ try {
 
     require('bootstrap');
     require('admin-lte');
+    require('jquery.nicescroll');
 } catch (e) {}
 
 /**

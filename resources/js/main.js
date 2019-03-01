@@ -8,7 +8,6 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
 // vForm 
 import { Form, HasError, AlertError } from 'vform'
 
@@ -19,6 +18,16 @@ window.Form = Form
 
 // fileters
 require('./filters')
+
+
+
+
+// Jquery NiceScroll Activition
+
+$(".sidebar").niceScroll({
+    cursorcolor: '#000',
+    cursorborder: 'none'
+});
 
 
 /**

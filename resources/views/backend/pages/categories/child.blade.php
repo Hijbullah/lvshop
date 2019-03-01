@@ -16,7 +16,7 @@
     
     </td>
     <td>
-        {!! $category->status ? '<span class="badge bg-success">Published</span>' : '<span class="badge bg-danger">NOT Published</span>' !!} 
+        {!! $category->status ? '<span class="badge bg-success p-2">Published</span>' : '<span class="badge bg-danger p-2">NOT Published</span>' !!} 
     </td>
     <td>
         <a href="#" title="Edit" class="btn btn-info btn-sm text-white mr-2"><i class="fas fa-edit"></i></a>

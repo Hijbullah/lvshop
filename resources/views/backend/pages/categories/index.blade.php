@@ -12,7 +12,7 @@
             @csrf
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-12">
-                <div class="card card-primary">
+                <div class="card card-dark">
                     <div class="card-header">
                       <h3 class="card-title">Add New Categories</h3>
                     </div>
@@ -66,7 +66,7 @@
                                         Published
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-raised btn-primary btn-round  float-right">ADD NEW </button>
+                                    <button type="submit" class="btn btn-raised btn-dark btn-round  float-right">ADD NEW </button>
                                 </div>
                             
                             </div> 
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="col-lg-7 col-md-7 col-sm-12">
-                <div class="card">
+                <div class="card card-dark">
                     <div class="card-header">
                         <h3 class="card-title">All Categories</h3>
                     </div>
@@ -106,7 +106,7 @@
                                     </td>
                                     <td>{{  $category->name }}</td>
                                     <td>
-                                        {!! $category->status ? '<span class="badge bg-success">Published</span>' : '<span class="badge bg-danger">NOT Published</span>' !!} 
+                                        {!! $category->status ? '<span class="badge bg-success p-2">Published</span>' : '<span class="badge bg-danger p-2">NOT Published</span>' !!} 
                                     </td>
                                     <td>
                                         <a href="#" title="Edit" class="btn btn-info btn-sm text-white mr-2"><i class="fas fa-edit"></i></a>

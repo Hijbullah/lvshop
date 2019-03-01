@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::get()->toTree();
-        return view('backend.pages.products.create', compact('categories'));
+        $brands = Brand::all();
+        return view('backend.pages.products.create', compact('categories', 'brands'));
     }
 
     /**
@@ -41,16 +43,17 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'sku' => ['required', 'string'],
             'name' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:100', 'unique:products'],
             'short_description' => ['required', 'string', 'min:100'],
             'cover_img' => ['image','required', 'mimes:jpg,jpeg,png' ],
             'images.*' => ['image', 'mimes:jpg,jpeg,png'],
             'quantity' => ['nullable', 'numeric', 'min:0'],
-            'unit_price' => ['nullable', 'numeric', 'min:0'],
             'sale_price' => ['nullable', 'numeric', 'min:0'],
-            //'sale_price' => ['nullable', 'numeric', 'min:0'],
+            'price_after_discount' => ['nullable', 'numeric', 'min:0'],
         ]);
+
 
         if($request->hasFile('images')) {
            $pathString = $this->storingMultipleImages($request->images); 
@@ -62,7 +65,7 @@ class ProductController extends Controller
         }
 
         $product = new Product;
-        $product->product_code = str_random(15);;
+        $product->sku = $request->sku;
         $product->name = $request->name;
         $product->slug = $request->slug;
         $product->cover_img = $path;
@@ -70,13 +73,14 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->images = $request->hasFile('images') ? $pathString : null;
         $product->quantity = $request->quantity;
-        $product->unit_price = $request->unit_price;
         $product->sale_price = $request->sale_price;
-        //$product->discount_price = $request->discount_price;
+        $product->price_after_discount = $request->price_after_discount;
+        $product->category_id = $request->category_id;
+        $product->brand_id = $request->brand_id;
         $product->status = $request->status;
-
-        $category = Category::find($request->category_id);
-        $category->products()->save($product);
+        $product->save();
+        // $category = Category::find($request->category_id);
+        // $category->products()->save($product);
         
         return redirect()->route('products.index')->with('status', 'product has successfully saved');
     }
@@ -102,7 +106,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::get()->toTree();
-        return view('backend.pages.products.edit', compact('product', 'categories'));
+        $brands = Brand::all();
+        return view('backend.pages.products.edit', compact('product', 'categories', 'brands'));
     }
 
     /**

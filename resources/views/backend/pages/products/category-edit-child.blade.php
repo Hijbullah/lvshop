@@ -1,7 +1,8 @@
 <tr>
     <td> 
         <label>
-            <input type="radio" {{ $category->id == $product->category->id ? 'checked' : '' }} class="flat-red" name="category_id" value="{{ $category->id }}">
+            <input type="radio" {{ $category->id == $product->category_id ? 'checked' : '' }} class="flat-red" name="category_id" value="{{ $category->id }}">
+           
         </label>
     </td>
     <td>

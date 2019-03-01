@@ -8,16 +8,16 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <div class="card">
+                <div class="card card-dark">
                     @include('includes.alert')
                     <div class="card-header clearfix">
                         <h3 class="card-title float-left">All Products</h3>
-                        <a href="{{ route('products.create') }}" class="btn btn-sm btn-success btn-flat text-white float-right">
+                        <a href="{{ route('products.create') }}" class="btn btn-sm bg-white btn-flat text-dark float-right">
                             <i class="fas fa-plus-circle"></i> Add New Product
                         </a>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-striped">
                             <tbody>
                                 <tr>
                                     <th style="width: 10px">#</th>
@@ -36,7 +36,7 @@
                                     <td> {{ $product->quantity }}</td>
                                     <td>{{ $product->category->name }}</td>
                                     <td>
-                                        {!! $product->status ? '<span class="badge bg-success">Published</span>' : '<span class="badge bg-danger">NOT Published</span>' !!} 
+                                        {!! $product->status ? '<span class="badge bg-success p-2">Published</span>' : '<span class="badge bg-danger">NOT Published</span>' !!} 
                                     </td>
                                     <td>
                                         <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm text-white mr-2"><i class="fas fa-eye"></i></a>

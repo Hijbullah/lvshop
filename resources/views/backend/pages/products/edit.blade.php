@@ -80,11 +80,20 @@
                     <div class="col-lg-5 col-md-5 col-sm-12">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card card-default">
+                                <div class="card card-dark">
                                     <div class="card-header">
-                                        <h3 class="card-title">Pricing & Quantity</h3>
+                                        <h3 class="card-title">Additional Info</h3>
                                     </div>
                                     <div class="card-body">
+                                        <div class="form-group">  
+                                            <label class="label" for="product_sku">Product SKU <small class="text-muted">(Must Provide)</small></label> 
+                                            <input type="text" id="product_sku" class="form-control{{ $errors->has('sku') ? ' is-invalid' : '' }}" value="{{ old('sku') ? old('sku') : $product->sku }}" placeholder="Product SKU" name="sku">
+                                            @if ($errors->has('sku'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('sku') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
                                         <div class="form-group">  
                                             <label class="label" for="product_qty">Product Quantity</label> 
                                             <input type="number" id="product_qty" class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" value="{{ old('quantity') ? old('quantity') : $product->quantity }}" placeholder="Quantity" name="quantity">
@@ -94,36 +103,21 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">  
-                                                    <label class="label" for="unit_price">New Price</label> 
-                                                    <input type="number" id="unit_price" class="form-control{{ $errors->has('unit_price') ? ' is-invalid' : '' }}" value="{{ old('unit_price') ? old('unit_price') : $product->unit_price }}" placeholder="Purchase Price" name="unit_price">
-                                                    @if ($errors->has('unit_price'))
+                                        <div class="form-group">  
+                                            <label class="label" for="sale_price">Sale Price</label> 
+                                            <input type="number" id="sale_price" class="form-control{{ $errors->has('sale_price') ? ' is-invalid' : '' }}" value="{{ old('sale_price') ? old('sale_price') : $product->sale_price }}" placeholder="Sale Price" name="sale_price">
+                                            @if ($errors->has('sale_price'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('unit_price') }}</strong>
+                                                    <strong>{{ $errors->first('sale_price') }}</strong>
                                                 </span>
                                             @endif
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">  
-                                                    <label class="label" for="sale_price">Old Price</label> 
-                                                    <input type="number" id="sale_price" class="form-control{{ $errors->has('sale_price') ? ' is-invalid' : '' }}" value="{{ old('sale_price') ? old('sale_price') : $product->sale_price }}" placeholder="Sale Price" name="sale_price">
-                                                    @if ($errors->has('sale_price'))
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $errors->first('sale_price') }}</strong>
-                                                        </span>
-                                                    @endif
-                                                </div>
-                                            </div>
                                         </div>
                                         <div class="form-group">  
-                                            <label class="label" for="discount_price">Discounted Price</label> 
-                                            <input type="number" id="discount_price" class="form-control{{ $errors->has('discount_price') ? ' is-invalid' : '' }}" value="{{ old('discount_price') ? old('discount_price') : $product->discount_price }}" placeholder="Price After Discout" name="discount_price">
-                                            @if ($errors->has('discount_price'))
+                                            <label class="label" for="price_after_discount">Price After Discound <small class="text-muted">(If any..)</small></label> 
+                                            <input type="number" id="price_after_discount" class="form-control{{ $errors->has('price_after_discount') ? ' is-invalid' : '' }}" value="{{ old('price_after_discount') ? old('price_after_discount') : $product->price_after_discount }}" placeholder="Price After Discout" name="price_after_discount">
+                                            @if ($errors->has('price_after_discount'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('discount_price') }}</strong>
+                                                    <strong>{{ $errors->first('price_after_discount') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -131,7 +125,23 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="card card-danger">
+                                <div class="card card-dark">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Select Brand</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <select class="form-control" name="brand_id">
+                                                @foreach ($brands as $brand)
+                                                <option value="{{ $brand->id }}" {{ $product->brand_id === $brand->id ? 'selected' : '' }}> {{ $brand->name }} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card card-dark">
                                     <div class="card-header">
                                         <h3 class="card-title">Select Categories</h3>
                                     </div>
@@ -146,7 +156,7 @@
                                                 <tr>
                                                     <td> 
                                                         <label>
-                                                            <input type="radio" {{ $category->id == $product->category->id ? 'checked' : '' }} class="flat-red" name="category_id" value="{{ $category->id }}">
+                                                            <input type="radio" {{ $category->id == $product->category_id ? 'checked' : '' }} class="flat-red" name="category_id" value="{{ $category->id }}">
                                                         </label>
                                                     </td>
                                                     <td>{{  $category->name }}</td>
@@ -165,15 +175,15 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="card card-info">
+                                <div class="card card-dark">
                                     <div class="card-header clearfix">
                                         <h3 class="card-title">Featured Image</h3>
                                     </div>
                                     <div class="card-body">
-                                            <div class="cover_img text-center">
-                                                <img src="{{ asset($product->cover_img) }}" alt="Image" width="200" height="200">
-                                            </div>
                                         <div class="form-group">
+                                            <div class="feature_img">
+                                                <img src="{{ asset($product->cover_img) }}" height="150" width="300" alt="Product Image">
+                                            </div>
                                             <label class="label" for="product_cover">Cover Image <small class="text-muted">(Must Provide)</small></label> 
                                             <input type="file" class="form-control-file{{ $errors->has('cover_img') ? ' is-invalid' : '' }}" value="{{ old('cover_img') }}" name="cover_img" id="product_cover">
                                             @if ($errors->has('cover_img'))
@@ -186,7 +196,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="card card-success">
+                                <div class="card card-dark">
                                     <div class="card-header clearfix">
                                         <h3 class="card-title">SEO Content</h3>
                                     </div>
@@ -267,7 +277,8 @@
                 ['misc', ['undo', 'redo', 'codeview', 'fullscreen', 'help']],
             ],
             height: 300,
-            placeholder: 'write here...'
+            placeholder: 'write here...',
+            followingToolbar: false
         });
     });
 </script>
