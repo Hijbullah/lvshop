@@ -28,8 +28,8 @@ class CreateProductsTable extends Migration
             $table->float('sale_price', 8, 2)->nullable();
             $table->float('price_after_discount', 8, 2)->nullable();
             $table->tinyInteger('status')->default(0);
-            $table->foreign('brand_id')->references('id')->on('brands')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('set null');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
             $table->timestamps();
         });
     }
