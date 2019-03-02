@@ -42,25 +42,25 @@
                                 </div>
                             </div>
                             <div class="products">
-                                {{-- <div class="row" v-for="(purchase, index) in purchases.products" :key="index">
+                                <div class="row" v-for="(product, index) in purchase.products" :key="index">
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="supplier" class="label">Select Product</label>
-                                            <select class="form-control" v-model="purchase.product.product_id" name="" id="supplier">
-                                                option :value="purchase.product.product_id">@{{ purchase.product.name }}</option>
+                                            <select class="form-control"  name="" id="supplier">
+                                                <option >@{{ product.name }}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="quantity" class="label">Quantity</label>
-                                            <input type="number" id="quantity" :value="purchase.product.quantity" class="form-control" placeholder="Quantity">
+                                            <input type="number" id="quantity" :value="product.quantity" class="form-control" placeholder="Quantity">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="price" class="label">Price</label>
-                                            <input type="number" id="price" :value="purchase.product.price" class="form-control" placeholder="Price">
+                                            <input type="number" id="price" :value="product.price" class="form-control" placeholder="Price">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -68,13 +68,14 @@
                                             <label for="total" class="label">Sub Total</label>
                                             <input type="number" id="total" class="form-control" readonly>
                                         </div>
+                                        <a href="#" @click.prevent="deleteRow(product)"> delete</a>
                                     </div>
-                                </div> --}}
+                                </div>
                             </div>
                            
                             <div class="row">
                                 <div class="col-md-12 clearfix">
-                                    {{-- <a class="btn btn-sm btn-primary float-right text-white" @click.prevent="newRow"> <i class="fas fa-plus-circle"></i> Add More</a> --}}
+                                    <a class="btn btn-sm btn-primary float-right text-white" @click.prevent="newRow"> <i class="fas fa-plus-circle"></i> Add More</a>
                                 </div>
                             </div>
                         </form>
@@ -103,7 +104,16 @@
         el: '#purchase-create',
         data: {
             suppliers: {},
-           
+            purchase: {
+                products: [
+                    {
+                        name: '',
+                        quantity: 1,
+                        unit_price: 0
+
+                    }
+                ]
+            }
             
             // form: new Form({
             //     id: '',
@@ -114,7 +124,6 @@
             // })
         },
         methods: {
-            
             loadSuppliers() {
                 axios.get('/admin/suppliers/all')
                 .then(response => {
@@ -128,17 +137,22 @@
             },
 
             newRow() {
-                this.Products.push({
-                    product_id: '',
+                this.purchase.products.push({
                     name: '',
                     quantity: 1,
                     unit_price: 0
                 })
+            },
+            deleteRow(product) {
+                this.purchase.products.splice(product, 1);
             } 
 
         }, 
+        computed: {
+            
+        },
         created() {
-            this.loadSuppliers();
+            //this.loadSuppliers();
         }
     })
 </script>
