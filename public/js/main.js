@@ -1852,11 +1852,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      suppliers: {},
+      exProducts: {},
       purchase: {
-        supplier: '',
+        supplier: 1,
+        purchase_date: null,
+        total_price: 0,
+        total_quantity: 0,
         products: [{
           name: '',
           quantity: 1,
@@ -1896,7 +1917,18 @@ __webpack_require__.r(__webpack_exports__);
       this.purchase.products.splice(index, 1);
     }
   },
-  computed: {},
+  computed: {
+    totalAmount: function totalAmount() {
+      return this.purchase.products.reduce(function (carry, product) {
+        return carry + parseFloat(product.quantity) * parseFloat(product.unit_price);
+      }, 0);
+    },
+    totalQunatity: function totalQunatity() {
+      return this.purchase.products.reduce(function (carry, product) {
+        return carry + parseFloat(product.quantity);
+      }, 0);
+    }
+  },
   created: function created() {
     this.loadProductsAndSuppliers();
   },
@@ -59269,17 +59301,72 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("form", { attrs: { action: "" } }, [
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "supplier" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { staticClass: "label", attrs: { for: "supplier" } }, [
+              _vm._v("Select Supplier")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.purchase.supplier,
+                    expression: "purchase.supplier"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { name: "", id: "supplier" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.purchase,
+                      "supplier",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              _vm._l(_vm.suppliers, function(supplier) {
+                return _c(
+                  "option",
+                  { key: supplier.id, domProps: { value: supplier.id } },
+                  [_vm._v(" " + _vm._s(supplier.name) + " ")]
+                )
+              }),
+              0
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(1)
+    ]),
+    _vm._v(" "),
     _c(
       "table",
-      { staticClass: "table table-sm" },
+      { staticClass: "table table-sm table-bordered mt-5" },
       [
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1),
+        _vm._m(2),
         _vm._v(" "),
         _vm._l(_vm.purchase.products, function(product, index) {
-          return _c("tr", { key: index }, [
+          return _c("tr", { key: index, staticClass: "text-center" }, [
             _c("td", [
               _c("input", {
                 directives: [
@@ -59356,12 +59443,17 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
-            _c("td", [_vm._v("\n                subtotal\n            ")]),
+            _c("td", [
+              _c("span", [
+                _vm._v(_vm._s(product.quantity * product.unit_price))
+              ])
+            ]),
             _vm._v(" "),
             _c("td", [
               _c(
                 "a",
                 {
+                  staticClass: "btn btn-sm btn-danger mt-1",
                   attrs: { href: "#" },
                   on: {
                     click: function($event) {
@@ -59370,7 +59462,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v(" delete")]
+                [_c("i", { staticClass: "fas fa-times" })]
               )
             ])
           ])
@@ -59381,7 +59473,7 @@ var render = function() {
             _c(
               "a",
               {
-                staticClass: "btn btn-sm btn-default",
+                staticClass: "btn btn-sm bg-dark text-white",
                 attrs: { href: "#" },
                 on: {
                   click: function($event) {
@@ -59390,8 +59482,22 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v(" Add New")]
+              [_vm._v(" Add More")]
             )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _c("th", { staticClass: "text-right" }, [_vm._v("Total Quantity")]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center" }, [
+            _vm._v(" " + _vm._s(_vm.totalQunatity) + " ")
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-right" }, [_vm._v("Total Amount")]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center" }, [
+            _vm._v("$ " + _vm._s(_vm.totalAmount))
           ])
         ])
       ],
@@ -59404,31 +59510,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", { attrs: { colspan: "3" } }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "label", attrs: { for: "supplier" } }, [
-            _vm._v("Select Supplier")
-          ]),
-          _vm._v(" "),
-          _c("select", {
-            staticClass: "form-control",
-            attrs: { name: "", id: "supplier" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("td", { attrs: { colspan: "2" } }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "label", attrs: { for: "date" } }, [
-            _vm._v("Date")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "date", id: "date" }
-          })
-        ])
+    return _c("div", { staticClass: "col-md-12 mb-5" }, [
+      _c("h3", [_vm._v("Receiving ID: #P665765266")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { staticClass: "label", attrs: { for: "date" } }, [
+          _vm._v("Date")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "date", id: "date" }
+        })
       ])
     ])
   },
@@ -59436,18 +59535,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [
+    return _c("tr", { staticClass: "text-center" }, [
+      _c("th", { staticStyle: { width: "30%" } }, [
         _c("label", { staticClass: "label" }, [_vm._v("Select Product")])
       ]),
       _vm._v(" "),
-      _c("td", [_c("label", { staticClass: "label" }, [_vm._v("Quantity")])]),
+      _c("th", { staticStyle: { width: "20%" } }, [
+        _c("label", { staticClass: "label" }, [_vm._v("Quantity")])
+      ]),
       _vm._v(" "),
-      _c("td", [_c("label", { staticClass: "label" }, [_vm._v("Price")])]),
+      _c("th", { staticStyle: { width: "20%" } }, [
+        _c("label", { staticClass: "label" }, [_vm._v("Price")])
+      ]),
       _vm._v(" "),
-      _c("td", [_c("label", { staticClass: "label" }, [_vm._v("Sub Total")])]),
+      _c("th", { staticStyle: { width: "20%" } }, [
+        _c("label", { staticClass: "label" }, [_vm._v("Sub Total")])
+      ]),
       _vm._v(" "),
-      _c("td")
+      _c("th", { staticStyle: { width: "10%" } })
     ])
   }
 ]
