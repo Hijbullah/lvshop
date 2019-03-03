@@ -29,33 +29,6 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-header text-uppercase">Sales Management</li>
-                <li class="nav-item">
-                    <a href="{{ url('admin/orders') }}" class="nav-link {{ request()->is('admin/orders*') ? 'active' : '' }}">
-                            <i class="fas fa-dolly nav-icon"></i>
-                        <p>Orders</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{{ route('customers') }}" class="nav-link {{ request()->is('admin/customers*') ? 'active' : '' }}">
-                        <i class="fas fa-users nav-icon"></i>
-                        <p>Customers</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{{ url('admin/shipping') }}" class="nav-link {{ request()->is('admin/shipping*') ? 'active' : '' }}">
-                        <i class="fas fa-shopping-cart nav-icon"></i>
-                        <p>Shipping</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('admin/cupon') }}" class="nav-link {{ request()->is('admin/cupon*') ? 'active' : '' }}">
-                        <i class="fas fa-truck nav-icon"></i>
-                        <p>Cupon Code</p>
-                    </a>
-                </li>
                 <li class="nav-header text-uppercase">Stock Management</li>
                 <li class="nav-item">
                     <a href="{{ route('brands.index') }}" class="nav-link {{ request()->is('admin/brands*') ? 'active' : '' }}">
@@ -87,6 +60,56 @@
                         <p>Receiving</p>
                     </a>
                 </li>
+                
+                <li class="nav-header text-uppercase">Sales Management</li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/orders') }}" class="nav-link {{ request()->is('admin/orders*') ? 'active' : '' }}">
+                            <i class="fas fa-dolly nav-icon"></i>
+                        <p>Orders</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('customers') }}" class="nav-link {{ request()->is('admin/customers*') ? 'active' : '' }}">
+                        <i class="fas fa-users nav-icon"></i>
+                        <p>Customers</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('admin/shipping') }}" class="nav-link {{ request()->is('admin/shipping*') ? 'active' : '' }}">
+                        <i class="fas fa-truck nav-icon"></i>
+                        <p>Shipping</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/cupon') }}" class="nav-link {{ request()->is('admin/cupon*') ? 'active' : '' }}">
+                        <i class="fas fa-shopping-cart nav-icon"></i>
+                        <p>Cupon Code</p>
+                    </a>
+                </li>
+
+                <li class="nav-header text-uppercase">Reporting & Analytics </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-archway nav-icon"></i>
+                        <p>Stock Report</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-boxes nav-icon"></i>
+                        <p>Receiving Report</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-chart-bar nav-icon"></i>
+                        <p>Sales Report</p>
+                    </a>
+                </li>
+
+
                 <li class="nav-header text-uppercase">Administration</li>
                 <li class="nav-item">
                     <a href="{{ route('admins.index') }}" class="nav-link {{ request()->is('admin/admins*') ? 'active' : '' }}">

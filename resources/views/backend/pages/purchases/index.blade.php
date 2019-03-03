@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 mb-3">
-                <a href="{{ url('admin/receivings/create') }}" class="btn btn-md bg-white text-dark btn-flat float-right">
+                <a href="{{ url('admin/receivings/create') }}" class="btn btn-md bg-dark text-white btn-flat float-right">
                     <i class="fas fa-plus-circle"></i> New receiving
                 </a>
             </div>

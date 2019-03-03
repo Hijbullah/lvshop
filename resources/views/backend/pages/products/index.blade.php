@@ -7,14 +7,16 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-md-12 mb-3">
+                <a href="{{ route('products.create') }}" class="btn btn-md bg-dark text-white btn-flat float-right">
+                    <i class="fas fa-plus-circle"></i> Add New Product
+                </a>
+            </div>
             <div class="col-lg-12">
                 <div class="card card-dark">
                     @include('includes.alert')
                     <div class="card-header clearfix">
                         <h3 class="card-title float-left">All Products</h3>
-                        <a href="{{ route('products.create') }}" class="btn btn-sm bg-white btn-flat text-dark float-right">
-                            <i class="fas fa-plus-circle"></i> Add New Product
-                        </a>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">

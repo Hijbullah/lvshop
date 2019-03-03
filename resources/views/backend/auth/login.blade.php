@@ -63,7 +63,7 @@
                 <div class="copyright text-center mt-2">
                     &copy;
                     <script>document.write(new Date().getFullYear())</script>,
-                    <span>Developed by <a href="https://github.com/hijbullah" target="_blank">Hijbullah Amin</a></span>
+                    <span>Developed by <a href="https://itassistancebd.com" target="_blank">IT Assistancebd</a></span>
                 </div>
             </div>
             <div class="col-lg-8 col-sm-12">
