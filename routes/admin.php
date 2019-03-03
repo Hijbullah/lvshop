@@ -71,10 +71,14 @@ Route::namespace('Backend')->group(function () {
     Route::resource('products', 'ProductController');
     Route::resource('brands', 'BrandController');
     Route::resource('suppliers', 'SupplierController');
+
+    Route::get('purchases/products-suppliers', 'PurchaseController@getProductsAndSuppliersForCreate');
+    Route::resource('purchases', 'PurchaseController');
+    
     Route::get('showing', 'ProductController@showing');
 
     Route::view('/invoice', 'backend.pages.invoice')->name('sale.invoice');
-
+    
 });
 
 

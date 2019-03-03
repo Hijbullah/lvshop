@@ -264,21 +264,21 @@
            $('#product_slug').val(slug.toLowerCase().substr(0, 100));
         });
       
-        $('#product_description').summernote({
-            toolbar: [
-                // [groupName, [list of button]]
-                ['style', ['style']],
-                ['font', ['fontsize', 'color']],
-                ['font', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['fontname']],
-                ['para', ['paragraph', 'ol', 'ul', 'height']],
-                ['insert', ['link','picture',  'table', 'hr', 'video']], // image and doc are customized buttons
-                ['misc', ['undo', 'redo', 'codeview', 'fullscreen', 'help']],
-            ],
-            height: 300,
-            placeholder: 'write here...',
-            followingToolbar: false
-        });
+        // $('#product_description').summernote({
+        //     toolbar: [
+        //         // [groupName, [list of button]]
+        //         ['style', ['style']],
+        //         ['font', ['fontsize', 'color']],
+        //         ['font', ['bold', 'italic', 'underline', 'clear']],
+        //         ['font', ['fontname']],
+        //         ['para', ['paragraph', 'ol', 'ul', 'height']],
+        //         ['insert', ['link','picture',  'table', 'hr', 'video']], // image and doc are customized buttons
+        //         ['misc', ['undo', 'redo', 'codeview', 'fullscreen', 'help']],
+        //     ],
+        //     height: 300,
+        //     placeholder: 'write here...',
+        //     followingToolbar: false
+        // });
     });
 </script>
 @endpush

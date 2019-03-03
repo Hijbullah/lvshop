@@ -24,10 +24,10 @@ require('./filters')
 
 // Jquery NiceScroll Activition
 
-$(".sidebar").niceScroll({
-    cursorcolor: '#000',
-    cursorborder: 'none'
-});
+// $(".sidebar").niceScroll({
+//     cursorcolor: '#000',
+//     cursorborder: 'none'
+// });
 
 
 /**
@@ -41,6 +41,7 @@ $(".sidebar").niceScroll({
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.component('PurchaseCreate', require('./components/PurchaseCreate.vue').default);
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
@@ -50,9 +51,6 @@ $(".sidebar").niceScroll({
  */
 
 
-/*** 
- *  We will create vue instance in every pages
- */
-// const app = new Vue({
-//     el: '#app'
-// });
+const app = new Vue({
+    el: '#app'
+});

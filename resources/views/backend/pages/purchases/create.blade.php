@@ -4,7 +4,7 @@
 @section('page-header', 'Receiving')
 
 @section('main-content')
-<section class="content" id="purchase-create">
+<section class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 mb-3">
@@ -19,67 +19,7 @@
                         <h3 class="card-title float-left">New Receiving</h3>
                     </div>
                     <div class="card-body">
-
-                        <form action="">
-                            <div class="row mb-5">
-                                <div class="col-md-4 offset-1">
-                                    <div class="form-group">
-                                        <label for="supplier" class="label">Select Supplier</label>
-                                        <select class="form-control" name="" id="supplier">
-                                            <option value="">Mayer inc</option>
-                                            <option value="">Mayer inc</option>
-                                            <option value="">Mayer inc</option>
-                                            <option value="">Mayer inc</option>
-                                            <option value="">Mayer inc</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 offset-1">
-                                    <div class="form-group">
-                                        <label for="date" class="label">Date</label>
-                                        <input type="date" id="date" class="form-control col-md-10">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="products">
-                                <div class="row" v-for="(product, index) in purchase.products" :key="index">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="supplier" class="label">Select Product</label>
-                                            <select class="form-control"  name="" id="supplier">
-                                                <option >@{{ product.name }}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="quantity" class="label">Quantity</label>
-                                            <input type="number" id="quantity" :value="product.quantity" class="form-control" placeholder="Quantity">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="price" class="label">Price</label>
-                                            <input type="number" id="price" :value="product.price" class="form-control" placeholder="Price">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="total" class="label">Sub Total</label>
-                                            <input type="number" id="total" class="form-control" readonly>
-                                        </div>
-                                        <a href="#" @click.prevent="deleteRow(product)"> delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                           
-                            <div class="row">
-                                <div class="col-md-12 clearfix">
-                                    <a class="btn btn-sm btn-primary float-right text-white" @click.prevent="newRow"> <i class="fas fa-plus-circle"></i> Add More</a>
-                                </div>
-                            </div>
-                        </form>
-
+                        <purchase-create></purchase-create> 
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -99,62 +39,6 @@
 
 
 @push('page-scripts')
-<script>
-    new Vue({
-        el: '#purchase-create',
-        data: {
-            suppliers: {},
-            purchase: {
-                products: [
-                    {
-                        name: '',
-                        quantity: 1,
-                        unit_price: 0
 
-                    }
-                ]
-            }
-            
-            // form: new Form({
-            //     id: '',
-            //     name: '',
-            //     email: '',
-            //     password: '',
-            //     password_confirmation: ''
-            // })
-        },
-        methods: {
-            loadSuppliers() {
-                axios.get('/admin/suppliers/all')
-                .then(response => {
-                    this.suppliers = response.data;
-                    console.log(this.suppliers);
-                })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                })
-            },
-
-            newRow() {
-                this.purchase.products.push({
-                    name: '',
-                    quantity: 1,
-                    unit_price: 0
-                })
-            },
-            deleteRow(product) {
-                this.purchase.products.splice(product, 1);
-            } 
-
-        }, 
-        computed: {
-            
-        },
-        created() {
-            //this.loadSuppliers();
-        }
-    })
-</script>
 @endpush
 

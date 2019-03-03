@@ -102,4 +102,5 @@ class SupplierController extends Controller
         Supplier::destroy($supplier->id);
         return redirect()->route('suppliers.index')->with('status', 'Supplier Deleted successfully');
     }
+    
 }
