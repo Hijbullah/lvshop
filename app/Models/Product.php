@@ -32,4 +32,18 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\Category');
     }
+
+    /**
+     * The Purchases that belong to the Product.
+     */
+    public function products()
+    {
+        return $this->belongsToMany('App\Models\Purchase')
+                        ->using('App\Models\ProductPurchase')
+                        ->withPivot([
+                            'batch',
+                            'quantity',
+                            'unit_price'
+                        ]);
+    }
 }
