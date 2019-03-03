@@ -7,16 +7,18 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-md-12 mb-3">
+                    <a href="{{ route('brands.index') }}" class="btn btn-md bg-dark text-white btn-flat float-right">
+                        <i class="fas fa-hand-point-left"></i> Go Back
+                    </a>
+                </div>
                 <div class="col-md-8 offset-md-2">
                     <div class="card card-dark">
                         <form action="{{ route('brands.update', $brand->id) }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="card-header clearfix">
-                                <h3 class="card-title float-left">Update | {{ $brand->name }}</h3> 
-                                <a href="{{ route('brands.index') }}" class="btn btn-sm btn-default btn-flat text-dark float-right">
-                                    <i class="fas fa-backward"></i> Back To All Brands
-                                </a>
+                                <h3 class="card-title float-left">Update | {{ $brand->name }}</h3>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">

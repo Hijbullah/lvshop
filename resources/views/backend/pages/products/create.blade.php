@@ -10,13 +10,15 @@
                 @csrf
 
                 <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <a href="{{ route('products.index') }}" class="btn btn-md bg-dark text-white btn-flat float-right">
+                            <i class="fas fa-hand-point-left"></i> Go Back
+                        </a>
+                    </div>
                     <div class="col-lg-7 col-md-7 col-sm-12">
                         <div class="card card-dark">
                             <div class="card-header clearfix">
                                 <h3 class="card-title float-left">Add New Product</h3> 
-                                <a href="{{ route('products.index') }}" class="btn btn-sm btn-default btn-flat text-dark float-right">
-                                    <i class="fas fa-backward"></i> Back To All Products
-                                </a>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">

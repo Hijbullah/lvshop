@@ -7,20 +7,22 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-md-12 mb-3">
+                <a href="" class="btn btn-md bg-white text-dark btn-flat float-right">
+                    <i class="fas fa-check-double text-success"></i> Completed Orders
+                </a>
+                <a href="" class="btn btn-md bg-white text-dark btn-flat float-right mr-3">
+                    <i class="fas fa-ban"></i> Incomplete Orders
+                </a>
+                <a href="" class="btn btn-md bg-white text-dark btn-flat float-right mr-3">
+                    <i class="fas fa-award"></i> Paid Orders
+                </a>
+            </div>
             <div class="col-lg-12">
                 <div class="card card-dark">
                     @include('includes.alert')
                     <div class="card-header clearfix pt-3">
                         <h3 class="card-title float-left">All Orders</h3>
-                        <a href="#" class="btn btn-sm bg-white text-dark btn-flat float-right">
-                            <i class="fab fa-searchengin"></i> Completed Order's
-                        </a>
-                        <a href="#" class="btn btn-sm bg-white text-dark  btn-flat float-right mr-1">
-                            <i class="fab fa-searchengin"></i> Paid Order's
-                        </a>
-                        <a href="#" class="btn btn-sm bg-white text-dark  btn-flat float-right mr-1">
-                            <i class="fab fa-searchengin"></i> Uncompleted Order's
-                        </a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -47,7 +49,14 @@
                                         <td>20</td>
                                         <td>Unpaid</td>
                                         <td>Payple</td>
-                                        <td>Pending</td>
+                                        <td>
+                                            <select name="" id="" class="form-control">
+                                                <option value="1">Pending</option>
+                                                <option value="2">Inprocess</option>
+                                                <option value="3">Shipped</option>
+                                                <option value="4">Completed</option>
+                                            </select>
+                                        </td>
                                         <td>
                                             <a href="" title="view" class="btn btn-success btn-sm text-white"><i class="fas fa-eye"></i></a>
                                             <a href="" title="Edit" class="btn btn-default btn-sm text-dark"><i class="fas fa-edit"></i></a>

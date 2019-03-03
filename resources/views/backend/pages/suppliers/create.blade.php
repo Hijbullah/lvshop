@@ -7,15 +7,17 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-md-12 mb-3">
+                    <a href="{{ route('suppliers.index') }}" class="btn btn-md bg-dark text-white btn-flat float-right">
+                        <i class="fas fa-hand-point-left"></i> Go Back
+                    </a>
+                </div>
                 <div class="col-md-8 offset-md-2">
                     <div class="card card-dark">
                         <form action="{{ route('suppliers.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-header clearfix">
-                                <h3 class="card-title float-left">Add New Suppliers</h3> 
-                                <a href="{{ route('suppliers.index') }}" class="btn btn-sm btn-default btn-flat text-dark float-right">
-                                    <i class="fas fa-backward"></i> Back To All Suppliers
-                                </a>
+                                <h3 class="card-title float-left">Add New Suppliers</h3>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">

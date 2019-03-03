@@ -7,20 +7,16 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-md-12 mb-3">
+                <a href="{{ route('suppliers.create') }}" class="btn btn-md bg-dark text-white btn-flat float-right">
+                    <i class="fas fa-plus-circle"></i> Add New Supplier
+                </a>
+            </div>
             <div class="col-lg-12">
                 <div class="card card-dark">
                     @include('includes.alert')
                     <div class="card-header clearfix pt-3">
                         <h3 class="card-title float-left">All Supplier</h3>
-                        <a href="{{ route('suppliers.create') }}" class="btn btn-sm bg-white text-dark btn-flat float-right">
-                            <i class="fab fa-searchengin"></i> Add New Supplier's
-                        </a>
-                        <a href="#" class="btn btn-sm bg-white text-dark  btn-flat float-right mr-1">
-                            <i class="fab fa-searchengin"></i> Paid Supplier's
-                        </a>
-                        <a href="#" class="btn btn-sm bg-white text-dark  btn-flat float-right mr-1">
-                            <i class="fab fa-searchengin"></i> Uncompleted Supplier's
-                        </a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
