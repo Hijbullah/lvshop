@@ -38,7 +38,7 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'gbin' => ['required', 'max:10' ],
+            'gbin' => ['required', 'max:10', 'unique:brands'],
             'name' => ['required', 'string', 'max:191'],
             'slug' => ['required', 'string', 'max:191', 'unique:brands'],
         ]);
@@ -79,7 +79,7 @@ class BrandController extends Controller
     public function update(Request $request, Brand $brand)
     {
         $this->validate($request, [
-            'gbin' => ['required', 'max:10' ],
+            'gbin' => ['required', 'max:10', 'unique:brands,gbin,' . $brand->id ],
             'name' => ['required', 'string', 'max:191'],
             'slug' => ['required', 'string', 'max:191', 'unique:brands,slug,' . $brand->id],
         ]);

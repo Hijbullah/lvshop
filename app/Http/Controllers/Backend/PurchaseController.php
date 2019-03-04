@@ -38,7 +38,27 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            // 'purchase_code' => 'required|alpha_dash|unique:purchases',
+            'purchase_date' => 'required|date_format:Y-m-d',
+            'supplier_id' => 'required',
+            'products.*.product_id' => 'required',
+            'products.*.unit_price' => 'required|numeric|min:1',
+            'products.*.quantity' => 'required|integer|min:1'
+        ]);
+
+        $products = collect($request->products)->transform(function($product) {
+            $product['total_price'] = $product['quantity'] * $product['unit_price'];
+            $product['total_price'] = $product['quantity'] * $product['unit_price'];
+
+            return new InvoiceProduct($product);
+        });
+
+        $purchase = $request->except('products');
+        $purchase['sub_total'] = $products->sum('total');
+        $purchase['grand_total'] = $data['sub_total'] - $data['discount'];
+
+        return $request;
     }
 
     /**

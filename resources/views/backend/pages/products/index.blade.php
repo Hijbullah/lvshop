@@ -34,8 +34,8 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ str_limit($product->name, 15, '...') }}</td>
-                                    <td>$ {{ $product->sale_price }}</td>
-                                    <td> {{ $product->quantity }}</td>
+                                    <td> {{ $product->sale_price ? '$' . $product->sale_price : 'Not Set' }}</td>
+                                    <td> {{ $product->quantity ? $product->quantity : 'NOT SET' }}</td>
                                     <td>{{ $product->category->name }}</td>
                                     <td>
                                         {!! $product->status ? '<span class="badge bg-success p-2">Published</span>' : '<span class="badge bg-danger">NOT Published</span>' !!} 
