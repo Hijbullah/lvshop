@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('admin/suppliers') }}" class="nav-link {{ request()->is('admin/supplier*') ? 'active' : '' }}">
+                    <a href="{{ route('suppliers.index') }}" class="nav-link {{ request()->is('admin/suppliers*') ? 'active' : '' }}">
                         <i class="fas fa-dolly-flatbed nav-icon"></i>
                         <p>Suppliers</p>
                     </a>
@@ -83,7 +83,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('admin/cupon') }}" class="nav-link {{ request()->is('admin/cupon*') ? 'active' : '' }}">
+                    <a href="{{ route('cupons.index') }}" class="nav-link {{ request()->is('admin/cupons*') ? 'active' : '' }}">
                         <i class="fas fa-shopping-cart nav-icon"></i>
                         <p>Cupon Code</p>
                     </a>

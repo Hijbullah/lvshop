@@ -42,9 +42,6 @@ Route::get('/receivings/show', function () {
 Route::get('/shipping', function () {
     return view('backend.pages.shipping');
 });
-Route::get('/cupon', function () {
-    return view('backend.pages.cupon');
-});
 Route::get('/setting', function () {
     return view('backend.pages.setting');
 });
@@ -71,6 +68,7 @@ Route::namespace('Backend')->group(function () {
     Route::resource('products', 'ProductController');
     Route::resource('brands', 'BrandController');
     Route::resource('suppliers', 'SupplierController');
+    Route::resource('cupons', 'CuponController');
 
     Route::get('purchases/products-suppliers', 'PurchaseController@getProductsAndSuppliersForCreate');
     Route::resource('purchases', 'PurchaseController');
