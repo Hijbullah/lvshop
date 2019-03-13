@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 mb-3">
-                <a href="{{ url('admin/receivings/create') }}" class="btn btn-md bg-dark text-white btn-flat float-right">
+                <a href="{{ route('purchases.create') }}" class="btn btn-md bg-dark text-white btn-flat float-right">
                     <i class="fas fa-plus-circle"></i> New receiving
                 </a>
             </div>
@@ -25,7 +25,6 @@
                                     <tr>
                                         <th style="width: 10px">#</th>
                                         <th>Receiving Code</th>
-                                        <th>Product Name</th>
                                         <th>Suppliers</th>
                                         <th>Total Quantity</th>
                                         <th>Total Amount</th>
@@ -33,21 +32,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($purchases as $purchase)
                                     <tr>
-                                        <td>1</td>
-                                        <td><a href="{{ url('admin/receivings/show') }}">Rv-1001</a></td>
-                                        <td>Product-1, Product-2, Product-3 </td>
-                                        <td>Mayer inc</td>
-                                        <td>2000</td>
-                                        <td><i class="fas fa-dollar-sign"></i> 2000</td>
+                                        <td>{{ $loop->index + 1 }}</td>
+                                        <td><a href="{{ route('purchases.show', $purchase->id) }}">{{ $purchase->purchase_code }}</a></td>
+                                        <td><a href="{{ route('suppliers.show', $purchase->supplier->id) }}">{{ $purchase->supplier->name }}</a></td>
+                                        <td>{{ $purchase->total_quantity }}</td>
+                                        <td><i class="fas fa-dollar-sign"></i> {{ $purchase->total_price }}</td>
                                         <td>
-                                            <a href="{{ url('admin/receivings/show') }}" title="view" class="btn btn-success btn-sm text-white"><i class="fas fa-eye"></i></a>
+                                            <a href="{{ route('purchases.show', $purchase->id) }}" title="view" class="btn btn-success btn-sm text-white"><i class="fas fa-eye"></i></a>
                                             <a href="" title="Edit" class="btn btn-default btn-sm text-dark"><i class="fas fa-edit"></i></a>
                                             <a href="" title="DELETE" class="btn btn-sm btn-warning text-dark product-delete"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
-                                   
-                                    
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

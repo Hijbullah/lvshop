@@ -13,12 +13,19 @@ class Purchase extends Model
      */
     protected $fillable = [
         'purchase_code', 
-        'suplier_id',
+        'supplier_id',
         'total_quantity', 
         'total_price', 
         'purchase_date'
     ];
 
+     /**
+     * The Supplier that belong to the Purchase.
+     */
+    public function supplier()
+    {
+        return $this->belongsTo('App\Models\Supplier');
+    }
 
     /**
      * The Products that belong to the Purchase.
@@ -26,11 +33,11 @@ class Purchase extends Model
     public function products()
     {
         return $this->belongsToMany('App\Models\Product')
-                        ->using('App\Models\ProductPurchase')
                         ->withPivot([
                             'batch',
                             'quantity',
-                            'unit_price'
+                            'unit_price',
+                            'sub_total'
                         ]);
     }
 }

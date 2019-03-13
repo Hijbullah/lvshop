@@ -23,4 +23,5 @@ Auth::routes();
 
 Route::namespace('Frontend')->group(function() {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/categories/{id}', 'HomeController@show')->name('cats.show');
 });

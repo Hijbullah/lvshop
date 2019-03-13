@@ -34,6 +34,14 @@ class Product extends Model
     }
 
     /**
+     * Get the Brand that owns the Product.
+     */
+    public function brand()
+    {
+        return $this->belongsTo('App\Models\Brand');
+    }
+
+    /**
      * The Purchases that belong to the Product.
      */
     public function products()
@@ -43,7 +51,8 @@ class Product extends Model
                         ->withPivot([
                             'batch',
                             'quantity',
-                            'unit_price'
+                            'unit_price',
+                            'sub_total'
                         ]);
     }
 }

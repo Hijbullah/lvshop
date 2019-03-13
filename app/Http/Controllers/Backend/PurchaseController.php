@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use App\Models\ProductPurchase;
 use App\Http\Controllers\Controller;
 
 class PurchaseController extends Controller
@@ -17,7 +18,8 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        //
+        $purchases = Purchase::with('supplier:id,name','products')->latest()->paginate(10);
+        return view('backend.pages.purchases.index', compact('purchases'));
     }
 
     /**
@@ -27,7 +29,7 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.purchases.create');
     }
 
     /**
@@ -41,24 +43,32 @@ class PurchaseController extends Controller
         $this->validate($request, [
             // 'purchase_code' => 'required|alpha_dash|unique:purchases',
             'purchase_date' => 'required|date_format:Y-m-d',
-            'supplier_id' => 'required',
+            'supplier_id' => 'required|min:1',
             'products.*.product_id' => 'required',
             'products.*.unit_price' => 'required|numeric|min:1',
             'products.*.quantity' => 'required|integer|min:1'
         ]);
 
         $products = collect($request->products)->transform(function($product) {
-            $product['total_price'] = $product['quantity'] * $product['unit_price'];
-            $product['total_price'] = $product['quantity'] * $product['unit_price'];
-
-            return new InvoiceProduct($product);
+            $product['sub_total'] = $product['quantity'] * $product['unit_price'];
+            $product['batch'] = str_random(4);
+            return $product;
         });
 
         $purchase = $request->except('products');
-        $purchase['sub_total'] = $products->sum('total');
-        $purchase['grand_total'] = $data['sub_total'] - $data['discount'];
+        $purchase['purchase_code'] = str_random(10);
+        $purchase['total_price'] = $products->sum('sub_total');
+        $purchase['total_quantity'] = $products->sum('quantity');
 
-        return $request;
+        // storing purchse and get the purchase
+        $purchase = Purchase::create($purchase);
+        
+        // storing into product_purchase table
+        foreach($products as $product){
+            $product['purchase_id'] = $purchase->id;
+            ProductPurchase::create($product);
+        }
+        return response()->json(['redirect'=> route('purchases.index')]);
     }
 
     /**
@@ -69,7 +79,7 @@ class PurchaseController extends Controller
      */
     public function show(Purchase $purchase)
     {
-        //
+        return view('backend.pages.purchases.show', compact('purchase'));
     }
 
     /**

@@ -17,7 +17,7 @@
 					<div class="row">
 						@foreach ($categories as $category)
 						<div class="col-md-2">
-							<a href="#">
+							<a href="{{ route('cats.show', $category->id) }}">
 								<div class="single-section">
 									<img src="{{ asset('frontend/img/maincat/') }}{{ '/' }}{{$loop->index + 1 }}{{ ('.png') }}" alt="">
 									<h3 class="title">{{ $category->name }}</h3>
@@ -25,71 +25,6 @@
 							</a>
 						</div>
 						@endforeach
-						
-						{{-- <div class="col-md-2">
-							<a href="#">
-								<div class="single-section">
-									<img src="{{ asset('frontend/img/maincat/2.png') }}" alt="">
-									<h3 class="title">Interior</h3>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-2">
-							<a href="#">
-								<div class="single-section">
-									<img src="{{ asset('frontend/img/maincat/3.png') }}" alt="">
-									<h3 class="title">Interior</h3>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-2">
-							<a href="#">
-								<div class="single-section">
-									<img src="{{ asset('frontend/img/maincat/4.png') }}" alt="">
-									<h3 class="title">Interior</h3>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-2">
-							<a href="#">
-								<div class="single-section">
-									<img src="{{ asset('frontend/img/maincat/5.png') }}" alt="">
-									<h3 class="title">Interior</h3>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-2">
-							<a href="#">
-								<div class="single-section">
-									<img src="{{ asset('frontend/img/maincat/6.png') }}" alt="">
-									<h3 class="title">Interior</h3>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-2 offset-3">
-							<a href="#">
-								<div class="single-section">
-									<img src="{{ asset('frontend/img/maincat/7.png') }}" alt="">
-									<h3 class="title">Interior</h3>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-2">
-							<a href="#">
-								<div class="single-section">
-									<img src="{{ asset('frontend/img/maincat/8.png') }}" alt="">
-									<h3 class="title">Interior</h3>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-2">
-							<a href="#">
-								<div class="single-section">
-									<img src="{{ asset('frontend/img/maincat/9.png') }}" alt="">
-									<h3 class="title">Interior</h3>
-								</div>
-							</a>
-						</div> --}}
 					</div>
 				</div>
 			</div>
@@ -189,124 +124,41 @@
 		<div class="row">
 			<div class="col-12">
 				<ul class="nav mb-3" id="pills-tab" role="tablist">
-					<li class="nav-item">
+					{{-- <li class="nav-item">
 						<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Top Categories</a>
-					</li>
+					</li> --}}
+					@foreach ($categories as $category)
+					@continue(count($category->descendants) == 0)
 					<li class="nav-item">
-						<a class="nav-link text-dark" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Interior</a>
+						<a class="nav-link text-dark {{ $loop->index == 0 ? 'active' : '' }}" id="pills-{{ $category->slug }}-tab" data-toggle="pill" href="#pills-{{ $category->slug }}" role="tab" aria-controls="pills-{{ $category->slug }}" aria-selected="true">{{ $category->name }}</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link text-dark" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Exterior</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-dark" id="pills-contact-tab" data-toggle="pill" href="#performance" role="tab" aria-controls="pills-contact" aria-selected="false">Performance</a>
-					</li>
+					@endforeach
+				
 				</ul>
 
 				<div class="tab-content" id="pills-tabContent">
-					<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+					@foreach ($categories as $category)
+
+					@continue(count($category->descendants) == 0)
+
+					<div class="tab-pane fade {{ $loop->index == 0 ? 'show active' : '' }}" id="pills-{{ $category->slug }}" role="tabpanel" aria-labelledby="pills-{{ $category->slug }}-tab">
 						<div class="row">
+							@foreach ($category->descendants as $category)
 							<div class="col-md-3 col-sm-6">
-								<a href="#">
+								<a href="{{ route('cats.show', $category->id) }}">
 									<div class="single-cat">
 										<img src="{{ asset('frontend/img/category/1.jpg') }}" alt="">
-										<p>Custom Wheels</p>
+										<p>{{ $category->name }}</p>
 									</div>
 								</a>
 							</div>
-							<div class="col-md-3 col-sm-6">
-								<a href="#">
-									<div class="single-cat">
-										<img src="{{ asset('frontend/img/category/2.jpg') }}" alt="">
-										<p>Headlights</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<a href="#">
-									<div class="single-cat">
-										<img src="{{ asset('frontend/img/category/3.jpg') }}" alt="">
-										<p>Tires</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<a href="#">
-									<div class="single-cat">
-										<img src="{{ asset('frontend/img/category/4.jpg') }}" alt="">
-										<p>Exhaust Systems</p>
-										
-									</div>
-								</a>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<a href="#">
-									<div class="single-cat">
-										<img src="{{ asset('frontend/img/category/5.jpg') }}" alt="">
-										<p>Exhaust Systems</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<a href="#">
-									<div class="single-cat">
-										<img src="{{ asset('frontend/img/category/6.jpg') }}" alt="">
-										<p>Exhaust Systems</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<a href="#">
-									<div class="single-cat">
-										<img src="{{ asset('frontend/img/category/7.jpg') }}" alt="">
-										<p>Exhaust Systems</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<a href="#">
-									<div class="single-cat">
-										<img src="{{ asset('frontend/img/category/8.jpg') }}" alt="">
-										<p>Exhaust Systems</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<a href="#">
-									<div class="single-cat">
-										<img src="{{ asset('frontend/img/category/9.jpg') }}" alt="">
-										<p>Exhaust Systems</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<a href="#">
-									<div class="single-cat">
-										<img src="{{ asset('frontend/img/category/10.jpg') }}" alt="">
-										<p>Exhaust Systems</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<a href="#">
-									<div class="single-cat">
-										<img src="{{ asset('frontend/img/category/11.jpg') }}" alt="">
-										<p>Exhaust Systems</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<a href="#">
-									<div class="single-cat">
-										<img src="{{ asset('frontend/img/category/12.jpg') }}" alt="">
-										<p>Exhaust Systems</p>
-									</div>
-								</a>
-							</div>
+							@endforeach
 						</div>
 					</div>
+					@endforeach
+					
 
-					<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+					{{-- <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 						<div class="row">
 							<div class="col-md-3 col-sm-6">
 								<a href="#">
@@ -474,7 +326,7 @@
 								</a>
 							</div>
 						</div>
-					</div>
+					</div> --}}
 				</div>				
 			</div>
 		</div>

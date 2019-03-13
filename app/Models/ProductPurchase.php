@@ -16,6 +16,9 @@ class ProductPurchase extends Model
         'purchase_id',
         'batch', 
         'quantity', 
-        'unit_price'
+        'unit_price',
+        'sub_total'
     ];
+
+    protected $table = 'product_purchase';
 }

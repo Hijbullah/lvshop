@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 mb-3">
-                <a href="{{ url('admin/receivings') }}" class="btn btn-md bg-dark text-white btn-flat float-right">
+                <a href="{{ route('purchases.index') }}" class="btn btn-md bg-dark text-white btn-flat float-right">
                     <i class="fas fa-hand-point-left"></i> Go Back
                 </a>
             </div>

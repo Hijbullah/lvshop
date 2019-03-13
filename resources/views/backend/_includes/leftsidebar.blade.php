@@ -55,7 +55,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('admin/receivings') }}" class="nav-link {{ request()->is('admin/receiving*') ? 'active' : '' }}">
+                    <a href="{{ route('purchases.index') }}" class="nav-link {{ request()->is('admin/purchases*') ? 'active' : '' }}">
                         <i class="fas fa-level-down-alt nav-icon"></i>
                         <p>Receiving</p>
                     </a>

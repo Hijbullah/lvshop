@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('page-title', 'Receiving')
+@section('page-title', 'Receiving | show')
 @section('page-header', 'Receiving')
 
 @section('main-content')
@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 mb-3">
-                <a href="{{ url('admin/receivings') }}" class="btn btn-md bg-white text-dark btn-flat float-right">
+                <a href="{{route('purchases.index') }}" class="btn btn-md bg-white text-dark btn-flat float-right">
                     <i class="fas fa-hand-point-left"></i> Go Back
                 </a>
             </div>
@@ -16,8 +16,8 @@
                 <div class="card card-dark">
                     @include('includes.alert')
                     <div class="card-header clearfix pt-3">
-                        <h3 class="card-title float-left">Date: 01-01-2019</h3>
-                        <h3 class="float-right">Supplier: Mayer inc</h3>
+                        <h3 class="card-title float-left">Date: {{ $purchase->purchase_date }}</h3>
+                        <h3 class="float-right">Supplier: {{ $purchase->supplier->name }}</h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -26,39 +26,27 @@
                                     <tr>
                                         <th style="width: 10px">#</th>
                                         <th>Product Name</th>
-                                        <th>Product Quantity</th>
+                                        <th>Quantity</th>
                                         <th>Unit Price</th>
-                                        <th>Sub Total</th>
+                                        <th class="text-right">Sub Total</th>
                                         
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($purchase->products as $product)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Product 1</td>
-                                        <td>100</td>
-                                        <td>120</td>
-                                        <td class="text-right">12000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Product 2</td>
-                                        <td >50</td>
-                                        <td >10</td>
-                                        <td class="text-right" >500</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Product 3</td>
-                                        <td>1</td>
-                                        <td>100</td>
-                                        <td class="text-right">100</td>
-                                    </tr>
+                                        <td>{{ $loop->index + 1 }}</td>
+                                        <td><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></td>
+                                        <td>{{ $product->pivot->quantity }}</td>
+                                        <td>{{ $product->pivot->unit_price }}</td>
+                                        <td class="text-right">{{ $product->pivot->sub_total }}</td>
+                                    </tr>   
+                                    @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <td class="text-right pr-5" colspan="4">Total </td>
-                                        <td class="text-right">12600</td>
+                                        <td class="text-right">{{ $purchase->total_price }}</td>
                                     </tr>
                                 </tfoot>
                             </table>

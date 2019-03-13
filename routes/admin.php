@@ -27,17 +27,6 @@ Route::get('/deliverys', function () {
     return view('backend.pages.delivery');
 });
 
-Route::get('/receivings', function () {
-    return view('backend.pages.purchases.index');
-});
-
-Route::get('/receivings/create', function () {
-    return view('backend.pages.purchases.create');
-});
-
-Route::get('/receivings/show', function () {
-    return view('backend.pages.purchases.show');
-});
 
 Route::get('/shipping', function () {
     return view('backend.pages.shipping');
